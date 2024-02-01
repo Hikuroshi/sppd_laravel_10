@@ -83,8 +83,6 @@
 															<i class="fa fa-eye" id="togglePassword" style="cursor: pointer"></i>
 														</span>
 													</div>
-													<label>Password</label>
-													<input name="password" class="form-control" placeholder="Masukan Password" type="password">
 												</div>
 												<button class="btn btn-main-primary btn-block">
 													Masuk
