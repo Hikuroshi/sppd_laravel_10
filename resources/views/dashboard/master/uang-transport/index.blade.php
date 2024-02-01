@@ -8,7 +8,7 @@
 			<div class="card-header">
 				<div class="d-flex align-items-center">
 					<h3 class="card-title">{{ $title }}</h3>
-					<a href="{{ route('uang-transport.create') }}" class="btn btn-primary mg-l-auto">Tambah</a>
+					<a href="{{ route('uang-transport.create') }}" class="btn btn-primary mg-l-auto"><i class="fas fa-plus"></i></a>
 				</div>
 			</div>
 			<div class="card-body">
@@ -17,9 +17,10 @@
 						<thead>
 							<tr>
 								<th class="border-bottom-0" style="width: 1%">No</th>
+								<th class="border-bottom-0 text-center" style="width: 1%">Aksi</th>
 								<th class="border-bottom-0">Wilayah</th>
 								<th class="border-bottom-0">Alat Angkut</th>
-								<th class="border-bottom-0">Harga Tiket</th>
+								{{-- <th class="border-bottom-0">Harga Tiket</th>
 								<th class="border-bottom-0">Eselon I</th>
 								<th class="border-bottom-0">Eselon II</th>
 								<th class="border-bottom-0">Eselon III</th>
@@ -28,17 +29,31 @@
 								<th class="border-bottom-0">Golongan III</th>
 								<th class="border-bottom-0">Golongan II</th>
 								<th class="border-bottom-0">Golongan I</th>
-								<th class="border-bottom-0">Non ASN</th>
-								<th class="border-bottom-0" style="width: 1%">Aksi</th>
+								<th class="border-bottom-0">Non ASN</th> --}}
 							</tr>
 						</thead>
 						<tbody>
 							@foreach ($uang_transports as $uang_transport)
 							<tr>
 								<td>{{ $loop->iteration }}</td>
+								<td>
+									<a class="btn btn-primary btn-sm" href="{{ route('uang-transport.show', $uang_transport->slug) }}">
+										<i class="fas fa-eye"></i>
+									</a>
+									<a class="btn btn-info btn-sm" href="{{ route('uang-transport.edit', $uang_transport->slug) }}">
+										<i class="fas fa-pencil-alt"></i>
+									</a>
+									<form action="{{ route('uang-transport.destroy', $uang_transport->slug) }}" method="post" class="d-inline">
+										@method('delete')
+										@csrf
+										<button type="button" class="btn btn-danger btn-sm" id='deleteData' data-title="{{ $uang_transport->nama }}">
+											<i class="fas fa-trash"></i>
+										</button>
+									</form>
+								</td>
 								<td>{{ $uang_transport->wilayah->nama }}</td>
 								<td>{{ $uang_transport->alat_angkut->nama }}</td>
-								<td>Rp {{ number_format($uang_transport->harga_tiket, 0, ',', '.') }}</td>
+								{{-- <td>Rp {{ number_format($uang_transport->harga_tiket, 0, ',', '.') }}</td>
 								<td>Rp {{ number_format($uang_transport->eselon_i, 0, ',', '.') }}</td>
 								<td>Rp {{ number_format($uang_transport->eselon_ii, 0, ',', '.') }}</td>
 								<td>Rp {{ number_format($uang_transport->eselon_iii, 0, ',', '.') }}</td>
@@ -47,26 +62,7 @@
 								<td>Rp {{ number_format($uang_transport->golongan_iii, 0, ',', '.') }}</td>
 								<td>Rp {{ number_format($uang_transport->golongan_ii, 0, ',', '.') }}</td>
 								<td>Rp {{ number_format($uang_transport->golongan_i, 0, ',', '.') }}</td>
-								<td>Rp {{ number_format($uang_transport->non_asn, 0, ',', '.') }}</td>
-
-								<td>
-									<a class="btn btn-primary btn-sm" href="{{ route('uang-transport.show', $uang_transport->slug) }}">
-										<i class="fas fa-folder"></i>
-										View
-									</a>
-									<a class="btn btn-info btn-sm" href="{{ route('uang-transport.edit', $uang_transport->slug) }}">
-										<i class="fas fa-pencil-alt"></i>
-										Edit
-									</a>
-									<form action="{{ route('uang-transport.destroy', $uang_transport->slug) }}" method="post" class="d-inline">
-										@method('delete')
-										@csrf
-										<button type="button" class="btn btn-danger btn-sm" id='deleteData' data-title="{{ $uang_transport->nama }}">
-											<i class="fas fa-trash"></i>
-											Delete
-										</button>
-									</form>
-								</td>
+								<td>Rp {{ number_format($uang_transport->non_asn, 0, ',', '.') }}</td> --}}
 							</tr>
 							@endforeach
 						</tbody>

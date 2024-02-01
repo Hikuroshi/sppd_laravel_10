@@ -200,7 +200,8 @@
 	function formatToRupiah(angka) {
 		return new Intl.NumberFormat('id-ID', {
 			style: 'currency',
-			currency: 'IDR'
+			currency: 'IDR',
+			minimumFractionDigits: 0
 		}).format(angka);
 	}
 

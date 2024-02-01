@@ -8,7 +8,7 @@
 			<div class="card-header">
 				<div class="d-flex align-items-center">
 					<h3 class="card-title">{{ $title }}</h3>
-					<a href="{{ route('wilayah.create') }}" class="btn btn-primary mg-l-auto">Tambah</a>
+					<a href="{{ route('wilayah.create') }}" class="btn btn-primary mg-l-auto"><i class="fas fa-plus"></i></a>
 				</div>
 			</div>
 			<div class="card-body">
@@ -17,35 +17,32 @@
 						<thead>
 							<tr>
 								<th class="border-bottom-0" style="width: 1%">No</th>
+								<th class="border-bottom-0 text-center" style="width: 1%">Aksi</th>
 								<th class="border-bottom-0">Nama</th>
 								<th class="border-bottom-0">Jenis Perdin</th>
-								<th class="border-bottom-0" style="width: 1%">Aksi</th>
 							</tr>
 						</thead>
 						<tbody>
 							@foreach ($wilayahs as $wilayah)
 							<tr>
 								<td>{{ $loop->iteration }}</td>
-								<td>{{ $wilayah->nama }}</td>
-								<td>{{ $wilayah->jenis_perdin->nama }}</td>
 								<td>
 									<a class="btn btn-primary btn-sm" href="{{ route('wilayah.show', $wilayah->slug) }}">
 										<i class="fas fa-folder"></i>
-										View
 									</a>
 									<a class="btn btn-info btn-sm" href="{{ route('wilayah.edit', $wilayah->slug) }}">
 										<i class="fas fa-pencil-alt"></i>
-										Edit
 									</a>
 									<form action="{{ route('wilayah.destroy', $wilayah->slug) }}" method="post" class="d-inline">
 										@method('delete')
 										@csrf
 										<button type="button" class="btn btn-danger btn-sm" id='deleteData' data-title="{{ $wilayah->nama }}">
 											<i class="fas fa-trash"></i>
-											Delete
 										</button>
 									</form>
 								</td>
+								<td>{{ $wilayah->nama }}</td>
+								<td>{{ $wilayah->jenis_perdin->nama }}</td>
 							</tr>
 							@endforeach
 						</tbody>

@@ -16,29 +16,27 @@
 						<thead>
 							<tr>
 								<th class="border-bottom-0" style="width: 1%">No</th>
+								<th class="border-bottom-0 text-center" style="width: 5%">Aksi</th>
 								<th class="border-bottom-0">Nama</th>
 								<th class="border-bottom-0">Jumlah Perdin</th>
 								<th class="border-bottom-0">Maksimal Perdin</th>
-								<th class="border-bottom-0" style="width: 1%">Aksi</th>
 							</tr>
 						</thead>
 						<tbody>
 							@foreach ($ketentuans as $ketentuan)
 							<tr>
 								<td>{{ $loop->iteration }}</td>
-								<td>{{ $ketentuan->pegawai->nama }}</td>
-								<td>{{ $ketentuan->jumlah_perdin }}</td>
-								<td>{{ $ketentuan->max_perdin }}</td>
 								<td>
 									<a class="btn btn-primary btn-sm" href="{{ route('ketentuan.show', $ketentuan->id) }}">
-										<i class="fas fa-folder"></i>
-										View
+										<i class="fas fa-eye"></i>
 									</a>
 									<a class="btn btn-info btn-sm" href="{{ route('ketentuan.edit', $ketentuan->id) }}">
 										<i class="fas fa-pencil-alt"></i>
-										Edit
 									</a>
 								</td>
+								<td>{{ $ketentuan->pegawai->nama }}</td>
+								<td>{{ $ketentuan->jumlah_perdin }}</td>
+								<td>{{ $ketentuan->max_perdin }}</td>
 							</tr>
 							@endforeach
 						</tbody>

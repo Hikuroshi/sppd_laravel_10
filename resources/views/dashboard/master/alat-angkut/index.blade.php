@@ -8,7 +8,7 @@
 			<div class="card-header">
 				<div class="d-flex align-items-center">
 					<h3 class="card-title">{{ $title }}</h3>
-					<a href="{{ route('alat-angkut.create') }}" class="btn btn-primary mg-l-auto">Tambah</a>
+					<a href="{{ route('alat-angkut.create') }}" class="btn btn-primary mg-l-auto"><i class="fas fa-plus"></i></a>
 				</div>
 			</div>
 			<div class="card-body">
@@ -17,35 +17,32 @@
 						<thead>
 							<tr>
 								<th class="border-bottom-0" style="width: 1%">No</th>
+								<th class="border-bottom-0 text-center" style="width: 12%">Aksi</th>
 								<th class="border-bottom-0">Nama</th>
 								<th class="border-bottom-0">Tiket</th>
-								<th class="border-bottom-0" style="width: 1%">Aksi</th>
 							</tr>
 						</thead>
 						<tbody>
 							@foreach ($alat_angkuts as $alat_angkut)
 							<tr>
-								<td>{{ $loop->iteration }}</td>
-								<td>{{ $alat_angkut->nama }}</td>
-								<td>{{ $alat_angkut->tiket ? 'Menggunakan tiket' : 'Tidak menggunakan tiket' }}</td>
+								<td class="text-center">{{ $loop->iteration }}</td>
 								<td>
 									<a class="btn btn-primary btn-sm" href="{{ route('alat-angkut.show', $alat_angkut->slug) }}">
-										<i class="fas fa-folder"></i>
-										View
+										<i class="fas fa-eye"></i>
 									</a>
 									<a class="btn btn-info btn-sm" href="{{ route('alat-angkut.edit', $alat_angkut->slug) }}">
 										<i class="fas fa-pencil-alt"></i>
-										Edit
 									</a>
 									<form action="{{ route('alat-angkut.destroy', $alat_angkut->slug) }}" method="post" class="d-inline">
 										@method('delete')
 										@csrf
 										<button type="button" class="btn btn-danger btn-sm" id='deleteData' data-title="{{ $alat_angkut->nama }}">
 											<i class="fas fa-trash"></i>
-											Delete
 										</button>
 									</form>
 								</td>
+								<td>{{ $alat_angkut->nama }}</td>
+								<td>{{ $alat_angkut->tiket ? 'Menggunakan tiket' : 'Tidak menggunakan tiket' }}</td>
 							</tr>
 							@endforeach
 						</tbody>

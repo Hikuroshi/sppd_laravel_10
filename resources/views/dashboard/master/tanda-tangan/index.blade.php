@@ -17,11 +17,11 @@
 						<thead>
 							<tr>
 								<th class="border-bottom-0" style="width: 1%">No</th>
+								<th class="border-bottom-0" style="width: 12%">Aksi</th>
 								<th class="border-bottom-0">Tanda Tangan</th>
 								<th class="border-bottom-0">Nama</th>
 								<th class="border-bottom-0">Jabatan</th>
 								<th class="border-bottom-0">Status</th>
-								<th class="border-bottom-0" style="width: 1%">Aksi</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -29,29 +29,26 @@
 							<tr>
 								<td>{{ $loop->iteration }}</td>
 								<td>
-									<img class="img-fluid" style="max-width: 100px;" src="data:image/png;base64,{{ $tanda_tangan->fileTtdEncoded }}" alt="{{ $tanda_tangan->nama }}">
-								</td>
-								<td>{{ $tanda_tangan->pegawai->nama }}</td>
-								<td>{{ $tanda_tangan->pegawai->jabatan->nama }}</td>
-								<td>{{ $tanda_tangan->status ? 'Aktif' : 'Tidak Aktif' }}</td>
-								<td>
 									<a class="btn btn-primary btn-sm" href="{{ route('tanda-tangan.show', $tanda_tangan->slug) }}">
-										<i class="fas fa-folder"></i>
-										View
+										<i class="fas fa-eye"></i>
 									</a>
 									<a class="btn btn-info btn-sm" href="{{ route('tanda-tangan.edit', $tanda_tangan->slug) }}">
 										<i class="fas fa-pencil-alt"></i>
-										Edit
 									</a>
 									<form action="{{ route('tanda-tangan.destroy', $tanda_tangan->slug) }}" method="post" class="d-inline">
 										@method('delete')
 										@csrf
 										<button type="button" class="btn btn-danger btn-sm" id='deleteData' data-title="{{ $tanda_tangan->nama }}">
 											<i class="fas fa-trash"></i>
-											Delete
 										</button>
 									</form>
 								</td>
+								<td>
+									<img class="img-fluid" style="max-width: 100px;" src="data:image/png;base64,{{ $tanda_tangan->fileTtdEncoded }}" alt="{{ $tanda_tangan->nama }}">
+								</td>
+								<td>{{ $tanda_tangan->pegawai->nama }}</td>
+								<td>{{ $tanda_tangan->pegawai->jabatan->nama }}</td>
+								<td>{{ $tanda_tangan->status ? 'Aktif' : 'Tidak Aktif' }}</td>
 							</tr>
 							@endforeach
 						</tbody>

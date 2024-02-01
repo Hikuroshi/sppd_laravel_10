@@ -17,33 +17,30 @@
 						<thead>
 							<tr>
 								<th class="border-bottom-0" style="width: 1%">No</th>
+								<th class="border-bottom-0 text-center" style="width: 12%">Aksi</th>
 								<th class="border-bottom-0">Nama</th>
-								<th class="border-bottom-0" style="width: 1%">Aksi</th>
 							</tr>
 						</thead>
 						<tbody>
 							@foreach ($jabatans as $jabatan)
 							<tr>
-								<td>{{ $loop->iteration }}</td>
-								<td>{{ $jabatan->nama }}</td>
+								<td class="text-center">{{ $loop->iteration }}</td>
 								<td>
 									<a class="btn btn-primary btn-sm" href="{{ route('jabatan.show', $jabatan->slug) }}">
-										<i class="fas fa-folder"></i>
-										View
+										<i class="fas fa-eye"></i>
 									</a>
 									<a class="btn btn-info btn-sm" href="{{ route('jabatan.edit', $jabatan->slug) }}">
 										<i class="fas fa-pencil-alt"></i>
-										Edit
 									</a>
 									<form action="{{ route('jabatan.destroy', $jabatan->slug) }}" method="post" class="d-inline">
 										@method('delete')
 										@csrf
 										<button type="button" class="btn btn-danger btn-sm" id='deleteData' data-title="{{ $jabatan->nama }}">
 											<i class="fas fa-trash"></i>
-											Delete
 										</button>
 									</form>
 								</td>
+								<td>{{ $jabatan->nama }}</td>
 							</tr>
 							@endforeach
 						</tbody>

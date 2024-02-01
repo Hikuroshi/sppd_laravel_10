@@ -17,33 +17,30 @@
 						<thead>
 							<tr>
 								<th class="border-bottom-0" style="width: 1%">No</th>
+								<th class="border-bottom-0 text-center" style="width: 12%">Aksi</th>
 								<th class="border-bottom-0">Nama</th>
-								<th class="border-bottom-0" style="width: 1%">Aksi</th>
 							</tr>
 						</thead>
 						<tbody>
 							@foreach ($bendaharas as $bendahara)
 							<tr>
 								<td>{{ $loop->iteration }}</td>
-								<td>{{ $bendahara->pegawai->nama }}</td>
 								<td>
 									<a class="btn btn-primary btn-sm" href="{{ route('bendahara.show', $bendahara->slug) }}">
-										<i class="fas fa-folder"></i>
-										View
+										<i class="fas fa-eye"></i>
 									</a>
 									<a class="btn btn-info btn-sm" href="{{ route('bendahara.edit', $bendahara->slug) }}">
 										<i class="fas fa-pencil-alt"></i>
-										Edit
 									</a>
 									<form action="{{ route('bendahara.destroy', $bendahara->slug) }}" method="post" class="d-inline">
 										@method('delete')
 										@csrf
 										<button type="button" class="btn btn-danger btn-sm" id='deleteData' data-title="{{ $bendahara->nama }}">
 											<i class="fas fa-trash"></i>
-											Delete
 										</button>
 									</form>
 								</td>
+								<td>{{ $bendahara->pegawai->nama }}</td>
 							</tr>
 							@endforeach
 						</tbody>

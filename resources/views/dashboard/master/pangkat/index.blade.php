@@ -13,37 +13,34 @@
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
-					<table class="table border-top-0 table-bordered text-nowrap border-bottom" id="responsive-datatable">
+					<table class="table border-top-0 table-bordered border-bottom" id="responsive-datatable">
 						<thead>
 							<tr>
 								<th class="border-bottom-0" style="width: 1%">No</th>
+								<th class="border-bottom-0 text-center" style="width: 12%">Aksi</th>
 								<th class="border-bottom-0">Nama</th>
-								<th class="border-bottom-0" style="width: 1%">Aksi</th>
 							</tr>
 						</thead>
 						<tbody>
 							@foreach ($pangkats as $pangkat)
 							<tr>
 								<td>{{ $loop->iteration }}</td>
-								<td>{{ $pangkat->nama }}</td>
 								<td>
 									<a class="btn btn-primary btn-sm" href="{{ route('pangkat.show', $pangkat->slug) }}">
-										<i class="fas fa-folder"></i>
-										View
+										<i class="fas fa-eye"></i>
 									</a>
 									<a class="btn btn-info btn-sm" href="{{ route('pangkat.edit', $pangkat->slug) }}">
 										<i class="fas fa-pencil-alt"></i>
-										Edit
 									</a>
 									<form action="{{ route('pangkat.destroy', $pangkat->slug) }}" method="post" class="d-inline">
 										@method('delete')
 										@csrf
 										<button type="button" class="btn btn-danger btn-sm" id='deleteData' data-title="{{ $pangkat->nama }}">
 											<i class="fas fa-trash"></i>
-											Delete
 										</button>
 									</form>
 								</td>
+								<td>{{ $pangkat->nama }}</td>
 							</tr>
 							@endforeach
 						</tbody>

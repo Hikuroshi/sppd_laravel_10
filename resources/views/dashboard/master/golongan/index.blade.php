@@ -14,23 +14,22 @@
 				<div class="table-responsive">
 					<table class="table border-top-0 table-bordered text-nowrap border-bottom" id="responsive-datatable">
 						<thead>
-							<tr>
+							<tr class="text-center">
 								<th class="border-bottom-0" style="width: 1%">No</th>
-								<th class="border-bottom-0">Nama</th>
-								<th class="border-bottom-0" style="width: 1%">Aksi</th>
+								<th class="border-bottom-0" style="width: 6%">Aksi</th>
+								<th class="border-bottom-0">Nama Golongan</th>
 							</tr>
 						</thead>
 						<tbody>
 							@foreach ($golongans as $golongan)
 							<tr>
 								<td>{{ $loop->iteration }}</td>
-								<td>{{ $golongan->nama }}</td>
 								<td>
 									<a class="btn btn-primary btn-sm" href="{{ route('golongan.show', $golongan->slug) }}">
-										<i class="fas fa-folder"></i>
-										View
+										<i class="fas fa-eye"></i>
 									</a>
 								</td>
+								<td>{{ $golongan->nama }}</td>
 							</tr>
 							@endforeach
 						</tbody>

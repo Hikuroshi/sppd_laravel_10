@@ -8,7 +8,7 @@
 			<div class="card-header">
 				<div class="d-flex align-items-center">
 					<h3 class="card-title">{{ $title }}</h3>
-					<a href="{{ route('uang-penginapan.create') }}" class="btn btn-primary mg-l-auto">Tambah</a>
+					<a href="{{ route('uang-penginapan.create') }}" class="btn btn-primary mg-l-auto"><i class="fas fa-plus"></i></a>
 				</div>
 			</div>
 			<div class="card-body">
@@ -17,9 +17,10 @@
 						<thead>
 							<tr>
 								<th class="border-bottom-0" style="width: 1%">No</th>
+								<th class="border-bottom-0" style="width: 1%">Aksi</th>
 								<th class="border-bottom-0">Keterangan</th>
 								<th class="border-bottom-0">Wilayah</th>
-								<th class="border-bottom-0">Eselon I</th>
+								{{-- <th class="border-bottom-0">Eselon I</th>
 								<th class="border-bottom-0">Eselon II</th>
 								<th class="border-bottom-0">Eselon III</th>
 								<th class="border-bottom-0">Eselon IV</th>
@@ -27,26 +28,13 @@
 								<th class="border-bottom-0">Golongan III</th>
 								<th class="border-bottom-0">Golongan II</th>
 								<th class="border-bottom-0">Golongan I</th>
-								<th class="border-bottom-0">Non ASN</th>
-								<th class="border-bottom-0" style="width: 1%">Aksi</th>
+								<th class="border-bottom-0">Non ASN</th> --}}
 							</tr>
 						</thead>
 						<tbody>
 							@foreach ($uang_penginapans as $uang_penginapan)
 							<tr>
 								<td>{{ $loop->iteration }}</td>
-								<td>{{ $uang_penginapan->keterangan }}</td>
-								<td>{{ $uang_penginapan->wilayah->nama }}</td>
-								<td>Rp {{ number_format($uang_penginapan->eselon_i, 0, ',', '.') }}</td>
-								<td>Rp {{ number_format($uang_penginapan->eselon_ii, 0, ',', '.') }}</td>
-								<td>Rp {{ number_format($uang_penginapan->eselon_iii, 0, ',', '.') }}</td>
-								<td>Rp {{ number_format($uang_penginapan->eselon_iv, 0, ',', '.') }}</td>
-								<td>Rp {{ number_format($uang_penginapan->golongan_iv, 0, ',', '.') }}</td>
-								<td>Rp {{ number_format($uang_penginapan->golongan_iii, 0, ',', '.') }}</td>
-								<td>Rp {{ number_format($uang_penginapan->golongan_ii, 0, ',', '.') }}</td>
-								<td>Rp {{ number_format($uang_penginapan->golongan_i, 0, ',', '.') }}</td>
-								<td>Rp {{ number_format($uang_penginapan->non_asn, 0, ',', '.') }}</td>
-
 								<td>
 									<a class="btn btn-primary btn-sm" href="{{ route('uang-penginapan.show', $uang_penginapan->slug) }}">
 										<i class="fas fa-folder"></i>
@@ -65,6 +53,17 @@
 										</button>
 									</form>
 								</td>
+								<td>{{ $uang_penginapan->keterangan }}</td>
+								<td>{{ $uang_penginapan->wilayah->nama }}</td>
+								{{-- <td>Rp {{ number_format($uang_penginapan->eselon_i, 0, ',', '.') }}</td>
+								<td>Rp {{ number_format($uang_penginapan->eselon_ii, 0, ',', '.') }}</td>
+								<td>Rp {{ number_format($uang_penginapan->eselon_iii, 0, ',', '.') }}</td>
+								<td>Rp {{ number_format($uang_penginapan->eselon_iv, 0, ',', '.') }}</td>
+								<td>Rp {{ number_format($uang_penginapan->golongan_iv, 0, ',', '.') }}</td>
+								<td>Rp {{ number_format($uang_penginapan->golongan_iii, 0, ',', '.') }}</td>
+								<td>Rp {{ number_format($uang_penginapan->golongan_ii, 0, ',', '.') }}</td>
+								<td>Rp {{ number_format($uang_penginapan->golongan_i, 0, ',', '.') }}</td>
+								<td>Rp {{ number_format($uang_penginapan->non_asn, 0, ',', '.') }}</td> --}}
 							</tr>
 							@endforeach
 						</tbody>

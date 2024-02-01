@@ -8,18 +8,19 @@
 			<div class="card-header">
 				<div class="d-flex align-items-center">
 					<h3 class="card-title">{{ $title }}</h3>
-					<a href="{{ route('uang-harian.create') }}" class="btn btn-primary mg-l-auto">Tambah</a>
+					<a href="{{ route('uang-harian.create') }}" class="btn btn-primary mg-l-auto"><i class="fas fa-plus"></i></a>
 				</div>
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
-					<table class="table border-top-0 table-bordered text-nowrap border-bottom" id="responsive-datatable">
+					<table class="table border-top-0 table-bordered border-bottom" id="responsive-datatable">
 						<thead>
 							<tr>
 								<th class="border-bottom-0" style="width: 1%">No</th>
+								<th class="border-bottom-0 text-center" style="width: 12%">Aksi</th>
 								<th class="border-bottom-0">Keterangan</th>
 								<th class="border-bottom-0">Wilayah</th>
-								<th class="border-bottom-0">Eselon I</th>
+								{{-- <th class="border-bottom-0">Eselon I</th>
 								<th class="border-bottom-0">Eselon II</th>
 								<th class="border-bottom-0">Eselon III</th>
 								<th class="border-bottom-0">Eselon IV</th>
@@ -27,17 +28,31 @@
 								<th class="border-bottom-0">Golongan III</th>
 								<th class="border-bottom-0">Golongan II</th>
 								<th class="border-bottom-0">Golongan I</th>
-								<th class="border-bottom-0">Non ASN</th>
-								<th class="border-bottom-0" style="width: 1%">Aksi</th>
+								<th class="border-bottom-0">Non ASN</th> --}}
 							</tr>
 						</thead>
 						<tbody>
 							@foreach ($uang_harians as $uang_harian)
 							<tr>
 								<td>{{ $loop->iteration }}</td>
+								<td>
+									<a class="btn btn-primary btn-sm" href="{{ route('uang-harian.show', $uang_harian->slug) }}">
+										<i class="fas fa-eye"></i>
+									</a>
+									<a class="btn btn-info btn-sm" href="{{ route('uang-harian.edit', $uang_harian->slug) }}">
+										<i class="fas fa-pencil-alt"></i>
+									</a>
+									<form action="{{ route('uang-harian.destroy', $uang_harian->slug) }}" method="post" class="d-inline">
+										@method('delete')
+										@csrf
+										<button type="button" class="btn btn-danger btn-sm" id='deleteData' data-title="{{ $uang_harian->nama }}">
+											<i class="fas fa-trash"></i>
+										</button>
+									</form>
+								</td>
 								<td>{{ $uang_harian->keterangan }}</td>
 								<td>{{ $uang_harian->wilayah->nama }}</td>
-								<td>Rp {{ number_format($uang_harian->eselon_i, 0, ',', '.') }}</td>
+								{{-- <td>Rp {{ number_format($uang_harian->eselon_i, 0, ',', '.') }}</td>
 								<td>Rp {{ number_format($uang_harian->eselon_ii, 0, ',', '.') }}</td>
 								<td>Rp {{ number_format($uang_harian->eselon_iii, 0, ',', '.') }}</td>
 								<td>Rp {{ number_format($uang_harian->eselon_iv, 0, ',', '.') }}</td>
@@ -45,26 +60,8 @@
 								<td>Rp {{ number_format($uang_harian->golongan_iii, 0, ',', '.') }}</td>
 								<td>Rp {{ number_format($uang_harian->golongan_ii, 0, ',', '.') }}</td>
 								<td>Rp {{ number_format($uang_harian->golongan_i, 0, ',', '.') }}</td>
-								<td>Rp {{ number_format($uang_harian->non_asn, 0, ',', '.') }}</td>
+								<td>Rp {{ number_format($uang_harian->non_asn, 0, ',', '.') }}</td> --}}
 
-								<td>
-									<a class="btn btn-primary btn-sm" href="{{ route('uang-harian.show', $uang_harian->slug) }}">
-										<i class="fas fa-folder"></i>
-										View
-									</a>
-									<a class="btn btn-info btn-sm" href="{{ route('uang-harian.edit', $uang_harian->slug) }}">
-										<i class="fas fa-pencil-alt"></i>
-										Edit
-									</a>
-									<form action="{{ route('uang-harian.destroy', $uang_harian->slug) }}" method="post" class="d-inline">
-										@method('delete')
-										@csrf
-										<button type="button" class="btn btn-danger btn-sm" id='deleteData' data-title="{{ $uang_harian->nama }}">
-											<i class="fas fa-trash"></i>
-											Delete
-										</button>
-									</form>
-								</td>
 							</tr>
 							@endforeach
 						</tbody>
@@ -76,8 +73,6 @@
 </div>
 
 @endsection
-
-@section('js')
 
 <!-- Back-to-top -->
 <a href="#top" id="back-to-top"><i class="las la-angle-double-up"></i></a>
