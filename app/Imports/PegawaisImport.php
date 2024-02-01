@@ -87,8 +87,11 @@ class PegawaisImport implements ToModel, WithHeadingRow, WithValidation
     public function rules(): array
     {
         return [
-            'nama' => 'required',
+            'nama' => 'required|min:3|max:100',
             'jabatan' => 'required',
+            'nip' => 'nullable|unique:pegawais',
+            'email' => 'nullable|email|unique:pegawais',
+            'no_hp' => 'nullable|unique:pegawais',
         ];
     }
 
@@ -96,7 +99,13 @@ class PegawaisImport implements ToModel, WithHeadingRow, WithValidation
     {
         return [
             'nama.required' => 'Nama tidak boleh kosong.',
+            'nama.min' => 'Nama minimal harus mengandung :min karakter.',
+            'nama.max' => 'Nama maksimal harus mengandung :max karakter.',
             'jabatan.required' => 'Jabatan tidak boleh kosong.',
+            'nip.unique' => 'NIP sudah digunakan.',
+            'email.email' => 'Format email tidak valid.',
+            'email.unique' => 'Email sudah digunakan.',
+            'no_hp.unique' => 'Nomor HP sudah digunakan.'
         ];
     }
 }

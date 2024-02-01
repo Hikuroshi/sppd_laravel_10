@@ -229,7 +229,7 @@
 			$('#golongan_id').attr('required', 'required');
 			$('#nip').attr('required', 'required');
 
-		} else if (jabatan.includes('non pns')) {
+		} else if (jabatan.includes('non asn')) {
 			$('#seksi_hide').show();
 			$('#bidang_hide').show();
 			$('#pangkat_hide').hide();
