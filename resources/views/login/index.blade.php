@@ -76,6 +76,13 @@
 													<input name="username" class="form-control" placeholder="Masukan Username" type="text">
 												</div>
 												<div class="form-group">
+													<label for="password">Password</label>
+													<div class="input-group mb-3">
+														<input name="password" id="password" class="form-control" placeholder="Masukan Password" type="password">
+														<span class="input-group-text" id="basic-addon1">
+															<i class="fa fa-eye" id="togglePassword" style="cursor: pointer"></i>
+														</span>
+													</div>
 													<label>Password</label>
 													<input name="password" class="form-control" placeholder="Masukan Password" type="password">
 												</div>
