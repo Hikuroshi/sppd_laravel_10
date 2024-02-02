@@ -22,13 +22,13 @@
     </div>
     <div style="text-align: center;">
         <h2>
-            PEMERINTAH PROVINSI BANTEN <br>
-            DINAS PEKERJAAN UMUM DAN PENATAAN RUANG
-        </h2>
-        <small>
-            Kawasan Pusat Pemerintahan Provinsi Banten (KP3B) <br>
-            Jln. Syekh Nawawi Al Bantani, Palima Serang-Banten Telp.(0254) 267053, Fax.(0254) 267052 Serang
-        </small>
+			PEMERINTAH PROVINSI BANTEN <br>
+			BADAN PENGELOLAAN KEUANGAN DAN ASET DAERAH
+		</h2>
+		<small>
+			KAWASAN PUSAT PEMERINTAHAN PROVINSI BANTEN (KP3B) <br>
+			Jl. Syech Nawawi Al- Bantani, Palima Serang Telp./Fax. (0254) 267019, 267008, 267009
+		</small>
     </div>
 
     <hr style="
@@ -84,7 +84,7 @@
         <div style="text-align: center;">
             <span style="padding-right: 120px">Serang,</span> {{ now()->isoFormat('YYYY') }}
             <h4>Pengguna Anggaran</h4>
-            <img src="data:image/png;base64,{{ $ttd_kepala->fileTtdEncoded ?? '' }}" alt="{{ $ttd_kepala->nama ?? '' }}" height="70">
+            <img src="data:image/png;base64,{{ $ttd_kepala->fileTtdEncoded ?? $ttd_kepala }}" alt="{{ $ttd_kepala->nama ?? '' }}" height="70">
             <p style="text-decoration: underline; font-weight: bold;">{{ $ttd_kepala->pegawai->nama ?? '' }}</p>
             <p>NIP.{{ $ttd_kepala->pegawai->nip ?? '' }}</p>
         </div>
