@@ -23,12 +23,12 @@
     <div style="text-align: center;">
         <h2>
 			PEMERINTAH PROVINSI BANTEN <br>
-			BADAN PENGELOLAAN KEUANGAN DAN ASET DAERAH
-		</h2>
-		<small>
-			KAWASAN PUSAT PEMERINTAHAN PROVINSI BANTEN (KP3B) <br>
-			Jl. Syech Nawawi Al- Bantani, Palima Serang Telp./Fax. (0254) 267019, 267008, 267009
-		</small>
+            DINAS PEKERJAAN UMUM DAN PENATAAN RUANG
+        </h2>
+        <small>
+            Kawasan Pusat Pemerintahan Provinsi Banten (KP3B) <br>
+            Jln. Syekh Nawawi Al Bantani, Palima Serang-Banten Telp.(0254) 267053, Fax.(0254) 267052 Serang
+        </small>
     </div>
 
     <hr style="
