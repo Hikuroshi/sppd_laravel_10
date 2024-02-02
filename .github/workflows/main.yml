@@ -13,21 +13,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      # - name: Install Dependencies
-      #   run: composer update --ignore-platform-reqs
-      # - name: Directory Permissions
-      #   run: chmod -R 777 storage bootstrap/cache
-      # - name: Copy .env
-      #   run: php -r "file_exists('.env') || copy('.env.example', '.env');"
-      # - name: Generate key
-      #   run: php artisan key:generate
-
-      # - name: Update .env for Database
-      #   run: |
-      #     echo "DB_DATABASE=${{ secrets.DB_DATABASE }}" >> .env
-      #     echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> .env
-      #     echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
-
       - name: Deployment
         uses: appleboy/ssh-action@master
         with:
@@ -37,10 +22,14 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
             cd public_html/sppd
-            rm -f .git/index.lock
-            git fetch origin production
+            if [ ! -d ".git" ]; then
+              git init -b production
+              git remote add origin https://github.com/Hikuroshi/sppd_laravel_10
+            fi
             git reset --hard origin/production
-            php composer.phar update --ignore-platform-reqs
+            git clean -f -d
+            git fetch origin production
+            php composer.phar install --ignore-platform-reqs
             chmod -R 777 storage bootstrap/cache
             php -r "file_exists('.env') || copy('.env.example', '.env');"
             php artisan key:generate
