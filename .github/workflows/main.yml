@@ -26,9 +26,9 @@ jobs:
               git init -b production
               git remote add origin https://github.com/Hikuroshi/sppd_laravel_10
             fi
+            git fetch origin production
             git reset --hard origin/production
             git clean -f -d
-            git fetch origin production
             php composer.phar install --ignore-platform-reqs
             chmod -R 777 storage bootstrap/cache
             php -r "file_exists('.env') || copy('.env.example', '.env');"
