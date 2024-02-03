@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\AlatAngkut;
-use App\Models\Bidang;
 use App\Models\DataPerdin;
 use App\Models\JenisPerdin;
 use App\Models\Ketentuan;
@@ -16,9 +15,9 @@ use App\Models\TandaTangan;
 use App\Models\UangHarian;
 use App\Models\UangPenginapan;
 use App\Models\UangTransport;
-use App\Models\Wilayah;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 
 class DataPerdinController extends Controller
@@ -128,9 +127,13 @@ class DataPerdinController extends Controller
         $authBidangId = auth()->user()->bidang_id;
 
         if (empty($authBidangId)) {
-            $pegawais = Pegawai::whereNotNull('golongan_id')->get();
+            $pegawais = Pegawai::whereNotNull('golongan_id')->whereHas('ketentuan', function ($query) {
+                $query->where('tersedia', 1);
+            })->get();
         } else {
-            $pegawais = Pegawai::whereNotNull('golongan_id')->where('bidang_id', $authBidangId)->get();
+            $pegawais = Pegawai::whereNotNull('golongan_id')->where('bidang_id', $authBidangId)->whereHas('ketentuan', function ($query) {
+                $query->where('tersedia', 1);
+            })->get();
         }
 
         return view('dashboard.perdin.data-perdin.create', [
@@ -223,6 +226,7 @@ class DataPerdinController extends Controller
 
             Ketentuan::whereIn('id', $allKetentuanIds)->increment('jumlah_perdin');
 
+            Artisan::call('availability:update');
             return redirect()->route('data-perdin.index', 'baru')->with('success', 'Data Perdin berhasil ditambahkan!');
         }, 2);
     }
@@ -365,6 +369,7 @@ class DataPerdinController extends Controller
 
             Ketentuan::whereIn('id', $allKetentuanIds)->increment('jumlah_perdin');
 
+            Artisan::call('availability:update');
             return redirect()->route('data-perdin.index', 'baru')->with('success', 'Data Perdin berhasil ditambahkan!');
         }, 2);
     }
