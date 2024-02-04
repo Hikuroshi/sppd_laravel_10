@@ -384,14 +384,15 @@ class DataPerdinController extends Controller
             $pegawaiMengikuti = $dataPerdin->pegawai_mengikuti;
 
             $pegawaiDiperintah->ketentuan->decrement('jumlah_perdin');
+            $pegawaiDiperintah->ketentuan->update(['tersedia' => 1]);
 
             foreach ($pegawaiMengikuti as $pegawai) {
                 $pegawai->ketentuan->decrement('jumlah_perdin');
+                $pegawai->ketentuan->update(['tersedia' => 1]);
             }
 
             $dataPerdin->delete();
 
-            Artisan::call('availability:update');
             return redirect()->route('data-perdin.index', 'baru')->with('success', 'Data Perdin berhasil dihapus!');
         }, 2);
     }
