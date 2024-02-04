@@ -391,6 +391,7 @@ class DataPerdinController extends Controller
 
             $dataPerdin->delete();
 
+            Artisan::call('availability:update');
             return redirect()->route('data-perdin.index', 'baru')->with('success', 'Data Perdin berhasil dihapus!');
         }, 2);
     }
