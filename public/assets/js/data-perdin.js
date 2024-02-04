@@ -36,17 +36,6 @@ $('#jenis_perdin_id').on('change', function() {
     });
 });
 
-// Pegawai disable
-$('#tujuan_id').on('change', function() {
-    if ($('#tujuan_id').val() !== '') {
-        $('#pegawai_diperintah_id').prop('disabled', false);
-        $('#pegawai_mengikuti_id').prop('disabled', false);
-    } else {
-        $('#pegawai_diperintah_id').prop('disabled', true);
-        $('#pegawai_mengikuti_id').prop('disabled', true);
-    }
-});
-
 // Pilih pegawai
 let selectedPegawai = [];
 
@@ -179,6 +168,14 @@ $('#jenis_perdin_id').on('change', function() {
 });
 $('#tujuan_id').on('change', function() {
     resetSelectedEmployees();
+
+    if ($('#tujuan_id').val() !== '') {
+        $('#pegawai_diperintah_id').prop('disabled', false);
+        $('#pegawai_mengikuti_id').prop('disabled', false);
+    } else {
+        $('#pegawai_diperintah_id').prop('disabled', true);
+        $('#pegawai_mengikuti_id').prop('disabled', true);
+    }
 });
 
 function formatToRupiah(angka) {
