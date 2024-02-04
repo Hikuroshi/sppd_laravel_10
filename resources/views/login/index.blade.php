@@ -47,7 +47,7 @@
 				<div class="col-md-6 col-lg-6 col-xl-7 d-none d-md-flex bg-primary-transparent">
 					<div class="row wd-100p mx-auto text-center">
 						<div class="col-md-12 col-lg-12 col-xl-12 my-auto mx-auto wd-100p">
-							<img src="/assets/img/jembatan-bogeg.jpeg" class="my-auto wd-md-100p wd-xl-100p mx-auto" style="height: 100vh" alt="logo">
+							<img src="/assets/img/login.jpeg" class="my-auto wd-md-100p wd-xl-100p mx-auto" style="height: 100vh" alt="logo">
 						</div>
 					</div>
 				</div>
@@ -66,19 +66,19 @@
 										</div>
 										<div class="main-signup-header">
 											<h2>Login Aplikasi Surat Perintah Perjalanan Dinas (SPPD)</h2>
-											<h5 class="fw-semibold mb-4">Dinas Pekerjaan Umum dan Penataan Ruang (DPUPR)</h5>
+											<h5 class="fw-semibold mb-4">Badan Pengelolaan Keuangan dan Aset Daerah (BPKAD)</h5>
 											<hr>
 											<form action="{{ route('login') }}" method="post">
 												@csrf
 
 												<div class="form-group">
 													<label>Username</label>
-													<input name="username" class="form-control" placeholder="Masukan Username" type="text">
+													<input name="username" class="form-control" placeholder="Masukan Username" type="text" required>
 												</div>
 												<div class="form-group">
 													<label for="password">Password</label>
 													<div class="input-group mb-3">
-														<input name="password" id="password" class="form-control" placeholder="Masukan Password" type="password">
+														<input name="password" id="password" class="form-control" placeholder="Masukan Password" type="password" required>
 														<span class="input-group-text" id="basic-addon1">
 															<i class="fa fa-eye" id="togglePassword" style="cursor: pointer"></i>
 														</span>
@@ -92,7 +92,7 @@
 											<!-- Footer opened -->
 											<div class="main-footer ht-45">
 												<div class="container-fluid pd-t-0 ht-100p">
-													<span> Copyright © 2024 <a href="/" class="text-primary">SPPD DPUPR PROVINSI BANTEN</a> All rights reserved.</span>
+													<span> Copyright © 2024 <a href="/" class="text-primary">SPPD BPKAD PROVINSI BANTEN</a> All rights reserved.</span>
 												</div>
 											</div>
 											<!-- Footer closed -->
