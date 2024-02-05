@@ -131,13 +131,17 @@ class DataPerdinController extends Controller
                 $query->where('tersedia', 1);
             })->get();
         } else {
-            $kabid = Pegawai::where('nama', 'like', '%Kepala Bidang%')->get();
-            $sekdis = Pegawai::where('nama', 'like', '%Sekretaris Dinas%')->get();
+            $kabid = Pegawai::whereHas('jabatan', function ($query) {
+                        $query->where('nama', 'like', '%Kepala Bidang%');
+                    })->get();
+            $sekdis = Pegawai::whereHas('jabatan', function ($query) {
+                        $query->where('nama', 'like', '%Sekretaris Dinas%');
+                    })->get();
             $pegawai = Pegawai::whereNotNull('golongan_id')
-            ->where('bidang_id', $authBidangId)
-            ->whereHas('ketentuan', function ($query) {
-                $query->where('tersedia', 1);
-            })->get();
+                        ->where('bidang_id', $authBidangId)
+                        ->whereHas('ketentuan', function ($query) {
+                            $query->where('tersedia', 1);
+                        })->get();
 
             $pegawais = $pegawai->merge($kabid)->merge($sekdis);
         }
@@ -260,13 +264,17 @@ class DataPerdinController extends Controller
                 $query->where('tersedia', 1);
             })->get();
         } else {
-            $kabid = Pegawai::where('nama', 'like', '%Kepala Bidang%')->get();
-            $sekdis = Pegawai::where('nama', 'like', '%Sekretaris Dinas%')->get();
+            $kabid = Pegawai::whereHas('jabatan', function ($query) {
+                        $query->where('nama', 'like', '%Kepala Bidang%');
+                    })->get();
+            $sekdis = Pegawai::whereHas('jabatan', function ($query) {
+                        $query->where('nama', 'like', '%Sekretaris Dinas%');
+                    })->get();
             $pegawai = Pegawai::whereNotNull('golongan_id')
-            ->where('bidang_id', $authBidangId)
-            ->whereHas('ketentuan', function ($query) {
-                $query->where('tersedia', 1);
-            })->get();
+                        ->where('bidang_id', $authBidangId)
+                        ->whereHas('ketentuan', function ($query) {
+                            $query->where('tersedia', 1);
+                        })->get();
 
             $pegawais = $pegawai->merge($kabid)->merge($sekdis);
         }
