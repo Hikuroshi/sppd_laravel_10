@@ -38,7 +38,7 @@ class DataPerdinController extends Controller
     public function getPegawaiInfo($tujuanId, $pegawaiId)
     {
         $pegawai = Pegawai::find($pegawaiId);
-        $pegawaiGolongan = str_replace('-', '_', $pegawai->golongan->slug);
+        $pegawaiGolongan = str_replace('-', '_', $pegawai->golongan->slug ?? 'non-asn');
 
         $uangHarian = UangHarian::where('wilayah_id', $tujuanId)->value($pegawaiGolongan);
 
@@ -127,7 +127,7 @@ class DataPerdinController extends Controller
         $authBidangId = auth()->user()->bidang_id;
 
         if (empty($authBidangId)) {
-            $pegawais = Pegawai::whereNotNull('golongan_id')->whereHas('ketentuan', function ($query) {
+            $pegawais = Pegawai::whereHas('ketentuan', function ($query) {
                 $query->where('tersedia', 1);
             })->get();
         } else {
@@ -137,8 +137,7 @@ class DataPerdinController extends Controller
             $sekdis = Pegawai::whereHas('jabatan', function ($query) {
                         $query->where('nama', 'like', '%Sekretaris Dinas%');
                     })->get();
-            $pegawai = Pegawai::whereNotNull('golongan_id')
-                        ->where('bidang_id', $authBidangId)
+            $pegawai = Pegawai::where('bidang_id', $authBidangId)
                         ->whereHas('ketentuan', function ($query) {
                             $query->where('tersedia', 1);
                         })->get();
@@ -199,7 +198,7 @@ class DataPerdinController extends Controller
 
             foreach ($selectedPegawaiIds as $pegawaiId) {
                 $pegawai = Pegawai::find($pegawaiId);
-                $pegawaiGolongan = str_replace('-', '_', $pegawai->golongan->slug);
+                $pegawaiGolongan = str_replace('-', '_', $pegawai->golongan->slug ?? 'non-asn');
                 $uangHarian = UangHarian::where('wilayah_id', $validatedData['tujuan_id'])->value($pegawaiGolongan);
                 $uangTransport = UangTransport::where('wilayah_id', $validatedData['tujuan_id'])->value($pegawaiGolongan);
                 $uangTiket = UangTransport::where('wilayah_id', $validatedData['tujuan_id'])->value('harga_tiket');
@@ -260,7 +259,7 @@ class DataPerdinController extends Controller
         $authBidangId = auth()->user()->bidang_id;
 
         if (empty($authBidangId)) {
-            $pegawais = Pegawai::whereNotNull('golongan_id')->whereHas('ketentuan', function ($query) {
+            $pegawais = Pegawai::whereHas('ketentuan', function ($query) {
                 $query->where('tersedia', 1);
             })->get();
         } else {
@@ -270,8 +269,7 @@ class DataPerdinController extends Controller
             $sekdis = Pegawai::whereHas('jabatan', function ($query) {
                         $query->where('nama', 'like', '%Sekretaris Dinas%');
                     })->get();
-            $pegawai = Pegawai::whereNotNull('golongan_id')
-                        ->where('bidang_id', $authBidangId)
+            $pegawai = Pegawai::where('bidang_id', $authBidangId)
                         ->whereHas('ketentuan', function ($query) {
                             $query->where('tersedia', 1);
                         })->get();
@@ -288,7 +286,7 @@ class DataPerdinController extends Controller
             'nama' => $pegawaiDiperintah->nama,
             'nip' => $pegawaiDiperintah->nip,
             'jabatan' => $pegawaiDiperintah->jabatan->nama,
-            'uang_harian' => UangHarian::where('wilayah_id', $dataPerdin->tujuan_id)->value(str_replace('-', '_', $pegawaiDiperintah->golongan->slug)),
+            'uang_harian' => UangHarian::where('wilayah_id', $dataPerdin->tujuan_id)->value(str_replace('-', '_', $pegawaiDiperintah->golongan->slug ?? 'non-asn')),
             'keterangan' => 'Pegawai yang ditugaskan'
         ]);
 
@@ -299,7 +297,7 @@ class DataPerdinController extends Controller
                 'nama' => $pegawai->nama,
                 'nip' => $pegawai->nip,
                 'jabatan' => $pegawai->jabatan->nama,
-                'uang_harian' => UangHarian::where('wilayah_id', $dataPerdin->tujuan_id)->value(str_replace('-', '_', $pegawai->golongan->slug)),
+                'uang_harian' => UangHarian::where('wilayah_id', $dataPerdin->tujuan_id)->value(str_replace('-', '_', $pegawai->golongan->slug ?? 'non-asn')),
                 'keterangan' => 'Pegawai sebagai pengikut'
             ];
         });
@@ -356,7 +354,7 @@ class DataPerdinController extends Controller
 
             foreach ($selectedPegawaiIds as $pegawaiId) {
                 $pegawai = Pegawai::find($pegawaiId);
-                $pegawaiGolongan = str_replace('-', '_', $pegawai->golongan->slug);
+                $pegawaiGolongan = str_replace('-', '_', $pegawai->golongan->slug ?? 'non-asn');
                 $uangHarian = UangHarian::where('wilayah_id', $validatedData['tujuan_id'])->value($pegawaiGolongan);
                 $uangTransport = UangTransport::where('wilayah_id', $validatedData['tujuan_id'])->value($pegawaiGolongan);
                 $uangTiket = UangTransport::where('wilayah_id', $validatedData['tujuan_id'])->value('harga_tiket');
