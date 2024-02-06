@@ -26,8 +26,11 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('isAdmin', function(User $user){
             return $user->level_admin->slug === 'admin';
         });
+        Gate::define('isSuperOperator', function(User $user){
+            return $user->level_admin->slug === 'super-operator' || $user->level_admin->slug === 'admin';
+        });
         Gate::define('isOperator', function(User $user){
-            return $user->level_admin->slug === 'operator' || $user->level_admin->slug === 'admin';
+            return $user->level_admin->slug === 'operator' || $user->level_admin->slug === 'super-operator' || $user->level_admin->slug === 'admin';
         });
         Gate::define('isApproval', function(User $user){
             return $user->level_admin->slug === 'approval'|| $user->level_admin->slug === 'admin';

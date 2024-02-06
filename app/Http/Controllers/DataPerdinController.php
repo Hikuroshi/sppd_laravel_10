@@ -126,7 +126,7 @@ class DataPerdinController extends Controller
     {
         $authBidangId = auth()->user()->bidang_id;
 
-        if (empty($authBidangId)) {
+        if (auth()->user()->level_admin->slug === 'super-operator' || empty($authBidangId)) {
             $pegawais = Pegawai::whereHas('ketentuan', function ($query) {
                 $query->where('tersedia', 1);
             })->get();
