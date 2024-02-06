@@ -36,7 +36,7 @@ class AppServiceProvider extends ServiceProvider
             return $user->level_admin->slug === 'approval'|| $user->level_admin->slug === 'admin';
         });
         Gate::define('isApprovalOperator', function(User $user){
-            return $user->level_admin->slug === 'approval'|| $user->level_admin->slug === 'operator' || $user->level_admin->slug === 'admin';
+            return $user->level_admin->slug === 'approval'|| $user->level_admin->slug === 'operator' || $user->level_admin->slug === 'super-operator' || $user->level_admin->slug === 'admin';
         });
 
         View::composer('*', function ($view) {
