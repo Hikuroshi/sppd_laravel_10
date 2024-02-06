@@ -43,7 +43,11 @@ class AppServiceProvider extends ServiceProvider
             if (auth()->user()) {
                 $authUser = auth()->user();
 
-                if ($authUser->level_admin->slug === 'approval' && $authUser->jabatan_id) {
+                if ($authUser->level_admin->slug === 'operator' && $authUser->bidang_id) {
+                    $data_perdins = DataPerdin::whereHas('tanda_tangan.pegawai.bidang', function ($query) use ($authUser) {
+                        $query->where('id', $authUser->bidang_id);
+                    })->get();
+                } else if ($authUser->level_admin->slug === 'approval' && $authUser->jabatan_id) {
                     $data_perdins = DataPerdin::whereHas('tanda_tangan.pegawai.jabatan', function ($query) use ($authUser) {
                         $query->where('id', $authUser->jabatan_id);
                     })->get();
