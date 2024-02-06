@@ -43,7 +43,7 @@ class PageController extends Controller
                 'chart_data' => [5, 9, 5, 6, 4, 12, 18, 14, 10, 15, 12, 5, 8, 5, 12, 5, 12, 10, 16, 12],
             ],
         ];
-        
+
         return view('dashboard.index', [
             'title' => 'Home',
             'totals' => $totals

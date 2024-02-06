@@ -51,6 +51,20 @@ class DataPerdin extends Model
 
     public static function getTotalByStatus($statusArray = null, $isCurrentMonth = false)
     {
+        $authUser = auth()->user();
+
+        if ($authUser->level_admin->slug === 'operator' && $authUser->bidang_id) {
+            $data_perdins = DataPerdin::whereHas('author.bidang', function ($query) use ($authUser) {
+                $query->where('id', $authUser->bidang_id);
+            });
+        } else if ($authUser->level_admin->slug === 'approval' && $authUser->jabatan_id) {
+            $data_perdins = DataPerdin::whereHas('tanda_tangan.pegawai.jabatan', function ($query) use ($authUser) {
+                $query->where('id', $authUser->jabatan_id);
+            });
+        } else {
+            $data_perdins = DataPerdin::query();
+        }
+
         $query = self::query();
 
         if ($statusArray) {
@@ -65,7 +79,9 @@ class DataPerdin extends Model
             $query->whereMonth('created_at', '=', now()->month);
         }
 
-        return $query->count();
+        $result = $query->whereIn('id', $data_perdins->pluck('id'))->count();
+
+        return $result;
     }
 
     public function author(): BelongsTo
