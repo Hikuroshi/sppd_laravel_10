@@ -26,6 +26,7 @@ jobs:
               git init -b production
               git remote add origin https://github.com/Hikuroshi/sppd_laravel_10
             fi
+            rm -f .git/index.lock
             git fetch origin production
             git reset --hard origin/production
             git clean -f -d
