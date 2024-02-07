@@ -53,7 +53,7 @@ class PageController extends Controller
         $barColors = [];
 
         $grouped_perdins_global = DataPerdin::all()->groupBy(function ($perdin) {
-            return Carbon::parse($perdin->created_at)->format('Y M');
+            return Carbon::parse($perdin->created_at)->format('M Y');
         });
 
         foreach ($grouped_perdins_global as $periode => $perdins_bulan_ini) {
