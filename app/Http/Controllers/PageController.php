@@ -53,6 +53,8 @@ class PageController extends Controller
         });
 
         $morrisData = [];
+        $labels = [];
+        $barColors = [];
 
         foreach ($grouped_data as $nama_bulan_tahun => $data_perdins_bulan) {
             $data = [
@@ -63,45 +65,28 @@ class PageController extends Controller
                 $nama_bidang = $perdin->author->bidang->nama ?? 'Admin';
                 $id_bidang = $perdin->author->bidang_id ?? 0;
 
-                $nilai_bidang = $data_perdins_bulan->count();
+                if (!in_array($nama_bidang, $labels)) {
+                    $labels[] = $nama_bidang;
+                }
+
+                if (!isset($barColors[$id_bidang])) {
+                    $barColors[$id_bidang] = $this->generateRandomColor();
+                }
+
+                $nilai_bidang = $data_perdins_bulan->where('author.bidang_id', $id_bidang)->count();
+
                 $data['bidang_' . $id_bidang] = $nilai_bidang;
             }
 
             $morrisData[] = $data;
         }
 
-        $labels = [];
-        $barColors = [];
-
-        foreach ($data_perdins as $perdin) {
-            $nama_bidang = $perdin->author->bidang->nama ?? 'Admin';
-            $id_bidang = $perdin->author->bidang_id ?? 0;
-
-            if (!in_array($nama_bidang, $labels)) {
-                $labels[] = $nama_bidang;
-            }
-
-            if (!isset($barColors[$id_bidang])) {
-                $warna_acak = $this->generateRandomColor();
-                $barColors[$id_bidang] = $warna_acak;
-            }
-        }
-
-        $keys_except_y = array_keys($morrisData[0]);
-        $key_array_except_y = array_filter($keys_except_y, function($key) {
-            return $key !== 'y';
-        });
-
-        $formatted_keys = array_map(function($key) {
-            return "'" . $key . "'";
-        }, $key_array_except_y);
-
-        $ykeys = '[' . implode(', ', $formatted_keys) . ']';
+        $ykeys = array_keys(array_slice($morrisData[0], 1));
 
         return view('dashboard.index', [
             'title' => 'Home',
             'morrisData' => json_encode($morrisData),
-            'ykeys' => $ykeys,
+            'ykeys' => json_encode($ykeys),
             'labels' => json_encode($labels),
             'barColors' => json_encode($barColors),
             'totals' => $totals,
