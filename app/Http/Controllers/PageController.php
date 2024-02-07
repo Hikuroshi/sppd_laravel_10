@@ -90,7 +90,7 @@ class PageController extends Controller
             'morrisData' => json_encode($morrisData),
             'ykeys' => json_encode($ykeys),
             'labels' => json_encode($labels),
-            'barColors' => json_encode($barColors),
+            'barColors' => json_encode(array_values($barColors)),
             'totals' => $totals,
         ]);
     }
