@@ -46,24 +46,26 @@ class PageController extends Controller
             ],
         ];
 
-        $data_perdins = DataPerdin::all();
-
-        $grouped_data = $data_perdins->groupBy(function ($item) {
-            return Carbon::parse($item->created_at)->format('F Y');
-        });
+        $bidangs = Bidang::all();
 
         $morrisData = [];
         $labels = [];
         $barColors = [];
 
-        foreach ($grouped_data as $nama_bulan_tahun => $data_perdins_bulan) {
+        $grouped_perdins_global = DataPerdin::all()->groupBy(function ($perdin) {
+            return Carbon::parse($perdin->created_at)->format('Y M');
+        });
+
+        foreach ($grouped_perdins_global as $periode => $perdins_bulan_ini) {
             $data = [
-                'y' => $nama_bulan_tahun,
+                'y' => $periode,
             ];
 
-            foreach ($data_perdins_bulan as $perdin) {
-                $nama_bidang = $perdin->author->bidang->nama ?? 'Admin';
-                $id_bidang = $perdin->author->bidang_id ?? 0;
+            foreach ($bidangs as $bidang) {
+                $perdins_bulan_ini_bidang = $perdins_bulan_ini->where('author.bidang_id', $bidang->id);
+
+                $id_bidang = $bidang->id;
+                $nama_bidang = $bidang->nama;
 
                 if (!in_array($nama_bidang, $labels)) {
                     $labels[] = $nama_bidang;
@@ -73,9 +75,9 @@ class PageController extends Controller
                     $barColors[$id_bidang] = $this->generateRandomColor();
                 }
 
-                $nilai_bidang = $data_perdins_bulan->where('author.bidang_id', $id_bidang)->count();
+                $jumlah_perdin = $perdins_bulan_ini_bidang->count();
 
-                $data['bidang_' . $id_bidang] = $nilai_bidang;
+                $data['bidang_' . $id_bidang] = $jumlah_perdin;
             }
 
             $morrisData[] = $data;
