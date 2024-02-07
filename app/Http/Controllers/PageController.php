@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bidang;
 use App\Models\DataPerdin;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -44,9 +46,70 @@ class PageController extends Controller
             ],
         ];
 
+        $data_perdins = DataPerdin::all();
+
+        $grouped_data = $data_perdins->groupBy(function ($item) {
+            return Carbon::parse($item->created_at)->format('F Y');
+        });
+
+        $morrisData = [];
+
+        foreach ($grouped_data as $nama_bulan_tahun => $data_perdins_bulan) {
+            $data = [
+                'y' => $nama_bulan_tahun,
+            ];
+
+            foreach ($data_perdins_bulan as $perdin) {
+                $nama_bidang = $perdin->author->bidang->nama ?? 'Admin';
+                $id_bidang = $perdin->author->bidang_id ?? 0;
+
+                $nilai_bidang = $data_perdins_bulan->count();
+                $data['bidang_' . $id_bidang] = $nilai_bidang;
+            }
+
+            $morrisData[] = $data;
+        }
+
+        $labels = [];
+        $barColors = [];
+
+        foreach ($data_perdins as $perdin) {
+            $nama_bidang = $perdin->author->bidang->nama ?? 'Admin';
+            $id_bidang = $perdin->author->bidang_id ?? 0;
+
+            if (!in_array($nama_bidang, $labels)) {
+                $labels[] = $nama_bidang;
+            }
+
+            if (!isset($barColors[$id_bidang])) {
+                $warna_acak = $this->generateRandomColor();
+                $barColors[$id_bidang] = $warna_acak;
+            }
+        }
+
+        $keys_except_y = array_keys($morrisData[0]);
+        $key_array_except_y = array_filter($keys_except_y, function($key) {
+            return $key !== 'y';
+        });
+
+        $formatted_keys = array_map(function($key) {
+            return "'" . $key . "'";
+        }, $key_array_except_y);
+
+        $ykeys = '[' . implode(', ', $formatted_keys) . ']';
+
         return view('dashboard.index', [
             'title' => 'Home',
-            'totals' => $totals
+            'morrisData' => json_encode($morrisData),
+            'ykeys' => $ykeys,
+            'labels' => json_encode($labels),
+            'barColors' => json_encode($barColors),
+            'totals' => $totals,
         ]);
+    }
+
+    private function generateRandomColor()
+    {
+        return '#' . str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT);
     }
 }

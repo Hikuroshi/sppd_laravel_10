@@ -33,9 +33,9 @@
 		<div class="card mg-b-20">
 			<div class="card-body">
 				<div class="main-content-label mg-b-5">
-					Bar Chart
+					Jumlah Perjalanan Dinas
 				</div>
-				<p class="mg-b-20">Basic Charts Of Valex template.</p>
+				<p class="mg-b-20">Jumlah Perjalanan dinas masing-masing bidang.</p>
 				<div class="morris-wrapper-demo" id="morrisBar2"></div>
 			</div>
 		</div>
@@ -64,55 +64,14 @@
 <script>
 	$(function() {
 		'use strict';
-		var morrisData = [{
-			y: '2006',
-			a: 100,
-			b: 90,
-			c: 80
-		}, {
-			y: '2007',
-			a: 75,
-			b: 65,
-			c: 75
-		}, {
-			y: '2008',
-			a: 50,
-			b: 40,
-			c: 45
-		}, {
-			y: '2009',
-			a: 75,
-			b: 65,
-			c: 85
-		}, {
-			y: '2010',
-			a: 100,
-			b: 90,
-			c: 80
-		}, {
-			y: '2011',
-			a: 75,
-			b: 65,
-			c: 75
-		}, {
-			y: '2012',
-			a: 50,
-			b: 40,
-			c: 45
-		}, {
-			y: '2013',
-			a: 75,
-			b: 65,
-			c: 85
-		}];
 
 		new Morris.Bar({
 			element: 'morrisBar2',
-			data: morrisData,
+			data: {!! $morrisData !!},
 			xkey: 'y',
-			ykeys: ['a', 'b', 'c'],
-			labels: ['Series A', 'Series B', 'Series C'],
-			barColors: ['#6d6ef3', '#285cf7', '#f7557a'],
+			ykeys: {!! $ykeys !!},
+			labels: {!! $labels !!},
+			barColors: {!! $barColors !!},
 			gridTextSize: 11,
 			hideHover: 'auto',
 			resize: true,
@@ -129,9 +88,6 @@
 
 <!--Internal Sparkline js -->
 <script src="/assets/plugins/jquery-sparkline/jquery.sparkline.min.js"></script>
-
-<!--Internal Apexchart js-->
-<script src="/assets/js/apexcharts.js"></script>
 
 <!--Internal  Perfect-scrollbar js -->
 <script src="/assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
@@ -152,10 +108,6 @@
 
 <!--themecolor js-->
 <script src="/assets/js/themecolor.js"></script>
-
-<!-- Apexchart js-->
-<script src="/assets/js/apexcharts.js"></script>
-<script src="/assets/js/jquery.vmap.sampledata.js"></script>
 
 <!-- custom js -->
 <script src="/assets/js/custom.js"></script>
