@@ -19,6 +19,7 @@ use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class DataPerdinController extends Controller
 {
@@ -105,11 +106,11 @@ class DataPerdinController extends Controller
     {
         $authUser = auth()->user();
 
-        if ($authUser->level_admin->slug === 'operator' && $authUser->bidang_id) {
+        if (Gate::allows('isOperator') && $authUser->bidang_id && !Gate::allows('isAdmin')) {
             $data_perdins = DataPerdin::filterByStatus($status)->whereHas('author.bidang', function ($query) use ($authUser) {
                 $query->where('id', $authUser->bidang_id);
             })->get();
-        } else if ($authUser->level_admin->slug === 'approval' && $authUser->jabatan_id) {
+        } else if (Gate::allows('isApproval') && $authUser->jabatan_id && !Gate::allows('isAdmin')) {
             $data_perdins = DataPerdin::filterByStatus($status)->whereHas('tanda_tangan.pegawai.jabatan', function ($query) use ($authUser) {
                 $query->where('id', $authUser->jabatan_id);
             })->get();
@@ -130,7 +131,7 @@ class DataPerdinController extends Controller
     {
         $authBidangId = auth()->user()->bidang_id;
 
-        if (auth()->user()->level_admin->slug === 'super-operator' || empty($authBidangId)) {
+        if (Gate::allows('isSuperOperator') || empty($authBidangId)) {
             $pegawais = Pegawai::whereHas('ketentuan', function ($query) {
                 $query->where('tersedia', 1);
             })->get();
@@ -262,7 +263,7 @@ class DataPerdinController extends Controller
     {
         $authBidangId = auth()->user()->bidang_id;
 
-        if (empty($authBidangId)) {
+        if (Gate::allows('isSuperOperator') || empty($authBidangId)) {
             $pegawais = Pegawai::whereHas('ketentuan', function ($query) {
                 $query->where('tersedia', 1);
             })->get();

@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Gate;
 
 class DataPerdin extends Model
 {
@@ -53,11 +54,11 @@ class DataPerdin extends Model
     {
         $authUser = auth()->user();
 
-        if ($authUser->level_admin->slug === 'operator' && $authUser->bidang_id) {
+        if (Gate::allows('isOperator') && $authUser->bidang_id && !Gate::allows('isAdmin')) {
             $data_perdins = DataPerdin::whereHas('author.bidang', function ($query) use ($authUser) {
                 $query->where('id', $authUser->bidang_id);
             });
-        } else if ($authUser->level_admin->slug === 'approval' && $authUser->jabatan_id) {
+        } else if (Gate::allows('isApproval') && $authUser->jabatan_id && !Gate::allows('isAdmin')) {
             $data_perdins = DataPerdin::whereHas('tanda_tangan.pegawai.jabatan', function ($query) use ($authUser) {
                 $query->where('id', $authUser->jabatan_id);
             });
