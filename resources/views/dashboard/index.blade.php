@@ -71,7 +71,7 @@
 			xkey: 'bidang',
 			ykeys: ['perdin'],
 			labels: ['Jumlah Perdin'],
-			barColors: {!! $barColors !!},
+			barColors: ['#6D6EF3'],
 			gridTextSize: 11,
 			hideHover: 'auto',
 			resize: true,

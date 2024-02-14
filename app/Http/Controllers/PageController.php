@@ -47,30 +47,27 @@ class PageController extends Controller
         ];
 
         $bidangs = Bidang::all();
-
         $morrisData = [];
-        $barColors = [];
 
         foreach ($bidangs as $bidang) {
+            $jumlahPerdin = 0;
+
+            foreach ($bidang->users as $user) {
+                $jumlahPerdin += $user->data_perdins->count();
+            }
+
             $data = [
                 'bidang' => $bidang->nama,
-                'perdin' => $bidang->data_perdins ? $bidang->data_perdins->count() : 0,
+                'perdin' => $jumlahPerdin,
             ];
 
-            $barColors[] = $this->generateRandomColor();
             $morrisData[] = $data;
         }
 
         return view('dashboard.index', [
             'title' => 'Home',
             'morrisData' => json_encode($morrisData),
-            'barColors' => json_encode(array_values($barColors)),
             'totals' => $totals,
         ]);
-    }
-
-    private function generateRandomColor()
-    {
-        return '#' . str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT);
     }
 }
