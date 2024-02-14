@@ -75,7 +75,8 @@
 			gridTextSize: 11,
 			hideHover: 'auto',
 			resize: true,
-			redraw: true
+			redraw: true,
+			xLabelAngle: 50,
 		});
 	});
 </script>
