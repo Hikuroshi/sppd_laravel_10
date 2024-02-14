@@ -17,7 +17,7 @@ class PerdinPdfController extends Controller
         App::setLocale('id');
         $data_perdin = DataPerdin::where('slug', $slug)->first();
 
-        $imgLogo = base64_encode(file_get_contents(public_path('assets/img/garuda.png')));
+        $imgLogo = base64_encode(file_get_contents(public_path('assets/img/logo-banten2.png')));
 
         $pdf = Pdf::loadView('dashboard.perdin.pdf-perdin.spt', [
             'data_perdin' => $data_perdin,
@@ -56,18 +56,18 @@ class PerdinPdfController extends Controller
     {
         App::setLocale('id');
         $data_perdin = DataPerdin::where('slug', $slug)->first();
-        $ttd_kepala = TandaTangan::whereHas('pegawai.jabatan', function ($query) {
-            $query->where('nama', 'like', '%Kepala Dinas%');
+        $ttd_sekret = TandaTangan::whereHas('pegawai.jabatan', function ($query) {
+            $query->where('nama', 'like', '%Sekretaris Dinas%');
         })->first();
 
-        $ttd_kepala = $ttd_kepala ?? 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
+        $ttd_sekret = $ttd_sekret ?? 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
 
         $imgLogo = base64_encode(file_get_contents(public_path('assets/img/logo-banten2.png')));
 
         $pdf = Pdf::loadView('dashboard.perdin.pdf-perdin.visum2', [
             'data_perdin' => $data_perdin,
             'imgLogo' => $imgLogo,
-            'ttd_kepala' => $ttd_kepala
+            'ttd_sekret' => $ttd_sekret
         ]);
 
         $pdf->setPaper(array(0,0,609.4488,935.433), 'portrait');

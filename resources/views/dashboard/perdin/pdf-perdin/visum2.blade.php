@@ -44,18 +44,17 @@
 					</tr>
 					<tr>
 						<td></td>
-						<td colspan="2">Kepala </td>
+						<td colspan="2">Selaku Pejabat Pelaksana Teknis Kegiatan</td>
 					</tr>
 					<tr>
 						<td></td>
-						<td colspan="2">Selaku Pejabat Pelaksana Teknis Kegiatan</td>
+						<td colspan="2">
+							<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="pptk" height="60">
+							<p style="text-decoration: underline; font-weight: bold;">&nbsp;</p>
+							<p>NIP.</p>
+						</td>
 					</tr>
 				</table>
-				<div style="text-align: center;">
-					<img src="data:image/png;base64,{{ $ttd_kepala->fileTtdEncoded ?? $ttd_kepala }}" alt="{{ $ttd_kepala->nama ?? '' }}" height="60">
-					<p style="text-decoration: underline; font-weight: bold;">{{ $ttd_kepala->pegawai->nama ?? '' }}</p>
-					<p>NIP.{{ $ttd_kepala->pegawai->nip ?? '' }}</p>
-				</div>
 			</td>
 		</tr>
 		<tr>
@@ -313,17 +312,19 @@
 						<td style="white-space: nowrap; width: 1%; padding-right: 10px;">Pada Tanggal</td>
 						<td>: {{ Carbon\Carbon::parse($data_perdin->tgl_kembali)->isoFormat('D MMMM YYYY') }}</td>
 					</tr>
-				</table>
-				<div style="text-align: center;">
-					<p style="margin-top: 10px;" style="text-transform: uppercase; font-weight: bold;">Kepala/Sekretaris</p>
+					<tr>
+						<td colspan="2">
+							<p>Kepala/Sekretaris</p>
 
-					<img src="data:image/png;base64,{{ $ttd_kepala->fileTtdEncoded ?? $ttd_kepala }}" alt="{{ $ttd_kepala->nama ?? '' }}" height="60">
-					<p style="text-decoration: underline; font-weight: bold;">{{ $ttd_kepala->pegawai->nama ?? '' }}</p>
-					<p>NIP.{{ $ttd_kepala->pegawai->nip ?? '' }}</p>
-				</div>
+							<img src="data:image/png;base64,{{ $ttd_sekret->fileTtdEncoded ?? $ttd_sekret }}" alt="{{ $ttd_sekret->nama ?? '' }}" height="60">
+							<p style="text-decoration: underline; font-weight: bold;">{{ $ttd_sekret->pegawai->nama ?? '' }}</p>
+							<p>NIP.{{ $ttd_sekret->pegawai->nip ?? '' }}</p>
+						</td>
+					</tr>
+				</table>
 			</td>
 			<td style="border: 1px solid black; width: 50%; vertical-align: top;">
-				<p style="padding-left: 20px;">Telah diperiksa dengan keterangan bahwa perjalan tersebut atas perintahnya dan semata mata untuk kepentingan jabatan dalam waktu sesingkat-singkatnya</p>
+				<p style="padding-left: 15px;">Telah diperiksa dengan keterangan bahwa perjalan tersebut atas perintahnya dan semata mata untuk kepentingan jabatan dalam waktu sesingkat-singkatnya</p>
 			</td>
 		</tr>
 		<tr>
