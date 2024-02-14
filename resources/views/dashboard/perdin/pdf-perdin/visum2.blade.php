@@ -11,7 +11,7 @@
 		}
 
 		p, td {
-			font-size: 15px;
+			font-size: 14px;
 			vertical-align: top;
 		}
 	</style>
@@ -25,18 +25,18 @@
 				<table style="width: 100%;">
 					<tr>
 						<td rowspan="5" style="vertical-align: top; width: 1%;">&nbsp;</td>
-						<td style="white-space: nowrap; width: 1%; padding-right: 20px;">Berangkat dari</td>
+						<td style="white-space: nowrap; width: 1%; padding-right: 10px;">Berangkat dari</td>
 						<td>: {{ $data_perdin->kedudukan }}</td>
 					</tr>
 					<tr>
 						<td colspan="2">(Tempat Kedudukan)</td>
 					</tr>
 					<tr>
-						<td style="white-space: nowrap; width: 1%; padding-right: 20px;">Ke</td>
+						<td style="white-space: nowrap; width: 1%; padding-right: 10px;">Ke</td>
 						<td>: {{ $data_perdin->tujuan->nama }}</td>
 					</tr>
 					<tr>
-						<td style="white-space: nowrap; width: 1%; padding-right: 20px;">Pada Tanggal</td>
+						<td style="white-space: nowrap; width: 1%; padding-right: 10px;">Pada Tanggal</td>
 						<td>: {{ Carbon\Carbon::parse($data_perdin->tgl_berangkat)->isoFormat('D MMMM YYYY') }}</td>
 					</tr>
 					<tr>
@@ -64,11 +64,11 @@
 				<table style="width: 100%;">
 					<tr>
 						<td rowspan="5" style="vertical-align: top; width: 1%;"></td>
-						<td style="white-space: nowrap; width: 1%; padding-right: 20px;">Tiba di</td>
+						<td style="white-space: nowrap; width: 1%; padding-right: 10px;">Tiba di</td>
 						<td>: {{ $data_perdin->tujuan->nama }}</td>
 					</tr>
 					<tr>
-						<td style="white-space: nowrap; width: 1%; padding-right: 20px;">Pada Tanggal</td>
+						<td style="white-space: nowrap; width: 1%; padding-right: 10px;">Pada Tanggal</td>
 						<td>: {{ Carbon\Carbon::parse($data_perdin->tgl_berangkat)->isoFormat('D MMMM YYYY') }}</td>
 					</tr>
 					<tr>
@@ -91,15 +91,15 @@
 				<table style="width: 100%;">
 					<tr>
 						<td rowspan="5" style="vertical-align: top; width: 1%; padding: 5px;"></td>
-						<td style="white-space: nowrap; width: 1%; padding-right: 20px;">Berangkat dari</td>
+						<td style="white-space: nowrap; width: 1%; padding-right: 10px;">Berangkat dari</td>
 						<td>: {{ $data_perdin->tujuan->nama }}</td>
 					</tr>
 					<tr>
-						<td style="white-space: nowrap; width: 1%; padding-right: 20px;">Ke</td>
+						<td style="white-space: nowrap; width: 1%; padding-right: 10px;">Ke</td>
 						<td>: {{ $data_perdin->kedudukan }}</td>
 					</tr>
 					<tr>
-						<td style="white-space: nowrap; width: 1%; padding-right: 20px;">Pada Tanggal</td>
+						<td style="white-space: nowrap; width: 1%; padding-right: 10px;">Pada Tanggal</td>
 						<td>: {{ Carbon\Carbon::parse($data_perdin->tgl_kembali)->isoFormat('D MMMM YYYY') }}</td>
 					</tr>
 					<tr>
@@ -123,11 +123,11 @@
 				<table style="width: 100%;">
 					<tr>
 						<td rowspan="5" style="vertical-align: top; width: 1%;"></td>
-						<td style="white-space: nowrap; width: 1%; padding-right: 20px;">Tiba di</td>
+						<td style="white-space: nowrap; width: 1%; padding-right: 10px;">Tiba di</td>
 						<td>: </td>
 					</tr>
 					<tr>
-						<td style="white-space: nowrap; width: 1%; padding-right: 20px;">Pada Tanggal</td>
+						<td style="white-space: nowrap; width: 1%; padding-right: 10px;">Pada Tanggal</td>
 						<td>: </td>
 					</tr>
 					<tr>
@@ -151,15 +151,15 @@
 				<table style="width: 100%;">
 					<tr>
 						<td rowspan="5" style="vertical-align: top; width: 1%; padding: 5px;"></td>
-						<td style="white-space: nowrap; width: 1%; padding-right: 20px;">Berangkat dari</td>
+						<td style="white-space: nowrap; width: 1%; padding-right: 10px;">Berangkat dari</td>
 						<td>: </td>
 					</tr>
 					<tr>
-						<td style="white-space: nowrap; width: 1%; padding-right: 20px;">Ke</td>
+						<td style="white-space: nowrap; width: 1%; padding-right: 10px;">Ke</td>
 						<td>: </td>
 					</tr>
 					<tr>
-						<td style="white-space: nowrap; width: 1%; padding-right: 20px;">Pada Tanggal</td>
+						<td style="white-space: nowrap; width: 1%; padding-right: 10px;">Pada Tanggal</td>
 						<td>: </td>
 					</tr>
 					<tr>
@@ -184,11 +184,11 @@
 				<table style="width: 100%;">
 					<tr>
 						<td rowspan="5" style="vertical-align: top; width: 1%;"></td>
-						<td style="white-space: nowrap; width: 1%; padding-right: 20px;">Tiba di</td>
+						<td style="white-space: nowrap; width: 1%; padding-right: 10px;">Tiba di</td>
 						<td>: </td>
 					</tr>
 					<tr>
-						<td style="white-space: nowrap; width: 1%; padding-right: 20px;">Pada Tanggal</td>
+						<td style="white-space: nowrap; width: 1%; padding-right: 10px;">Pada Tanggal</td>
 						<td>: </td>
 					</tr>
 					<tr>
@@ -212,15 +212,15 @@
 				<table style="width: 100%;">
 					<tr>
 						<td rowspan="5" style="vertical-align: top; width: 1%; padding: 5px;"></td>
-						<td style="white-space: nowrap; width: 1%; padding-right: 20px;">Berangkat dari</td>
+						<td style="white-space: nowrap; width: 1%; padding-right: 10px;">Berangkat dari</td>
 						<td>: </td>
 					</tr>
 					<tr>
-						<td style="white-space: nowrap; width: 1%; padding-right: 20px;">Ke</td>
+						<td style="white-space: nowrap; width: 1%; padding-right: 10px;">Ke</td>
 						<td>: </td>
 					</tr>
 					<tr>
-						<td style="white-space: nowrap; width: 1%; padding-right: 20px;">Pada Tanggal</td>
+						<td style="white-space: nowrap; width: 1%; padding-right: 10px;">Pada Tanggal</td>
 						<td>: </td>
 					</tr>
 					<tr>
@@ -245,11 +245,11 @@
 				<table style="width: 100%;">
 					<tr>
 						<td rowspan="5" style="vertical-align: top; width: 1%;"></td>
-						<td style="white-space: nowrap; width: 1%; padding-right: 20px;">Tiba di</td>
+						<td style="white-space: nowrap; width: 1%; padding-right: 10px;">Tiba di</td>
 						<td>: </td>
 					</tr>
 					<tr>
-						<td style="white-space: nowrap; width: 1%; padding-right: 20px;">Pada Tanggal</td>
+						<td style="white-space: nowrap; width: 1%; padding-right: 10px;">Pada Tanggal</td>
 						<td>: </td>
 					</tr>
 					<tr>
@@ -273,15 +273,15 @@
 				<table style="width: 100%;">
 					<tr>
 						<td rowspan="5" style="vertical-align: top; width: 1%; padding: 5px;"></td>
-						<td style="white-space: nowrap; width: 1%; padding-right: 20px;">Berangkat dari</td>
+						<td style="white-space: nowrap; width: 1%; padding-right: 10px;">Berangkat dari</td>
 						<td>: </td>
 					</tr>
 					<tr>
-						<td style="white-space: nowrap; width: 1%; padding-right: 20px;">Ke</td>
+						<td style="white-space: nowrap; width: 1%; padding-right: 10px;">Ke</td>
 						<td>: </td>
 					</tr>
 					<tr>
-						<td style="white-space: nowrap; width: 1%; padding-right: 20px;">Pada Tanggal</td>
+						<td style="white-space: nowrap; width: 1%; padding-right: 10px;">Pada Tanggal</td>
 						<td>: </td>
 					</tr>
 					<tr>
@@ -306,11 +306,11 @@
 				<table style="width: 100%;">
 					<tr>
 						<td rowspan="5" style="vertical-align: top; width: 1%;"></td>
-						<td style="white-space: nowrap; width: 1%; padding-right: 20px;">Tiba di</td>
+						<td style="white-space: nowrap; width: 1%; padding-right: 10px;">Tiba di</td>
 						<td>: {{ $data_perdin->kedudukan }}</td>
 					</tr>
 					<tr>
-						<td style="white-space: nowrap; width: 1%; padding-right: 20px;">Pada Tanggal</td>
+						<td style="white-space: nowrap; width: 1%; padding-right: 10px;">Pada Tanggal</td>
 						<td>: {{ Carbon\Carbon::parse($data_perdin->tgl_kembali)->isoFormat('D MMMM YYYY') }}</td>
 					</tr>
 				</table>
