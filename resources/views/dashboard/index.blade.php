@@ -68,9 +68,9 @@
 		new Morris.Bar({
 			element: 'morrisBar2',
 			data: {!! $morrisData !!},
-			xkey: 'y',
-			ykeys: {!! $ykeys !!},
-			labels: {!! $labels !!},
+			xkey: 'bidang',
+			ykeys: ['perdin'],
+			labels: ['Jumlah Perdin'],
 			barColors: {!! $barColors !!},
 			gridTextSize: 11,
 			hideHover: 'auto',

@@ -49,47 +49,21 @@ class PageController extends Controller
         $bidangs = Bidang::all();
 
         $morrisData = [];
-        $labels = [];
         $barColors = [];
 
-        $grouped_perdins_global = DataPerdin::all()->groupBy(function ($perdin) {
-            return Carbon::parse($perdin->created_at)->format('M Y');
-        });
-
-        foreach ($grouped_perdins_global as $periode => $perdins_bulan_ini) {
+        foreach ($bidangs as $bidang) {
             $data = [
-                'y' => $periode,
+                'bidang' => $bidang->nama,
+                'perdin' => $bidang->data_perdins ? $bidang->data_perdins->count() : 0,
             ];
 
-            foreach ($bidangs as $bidang) {
-                $perdins_bulan_ini_bidang = $perdins_bulan_ini->where('author.bidang_id', $bidang->id);
-
-                $id_bidang = $bidang->id;
-                $nama_bidang = $bidang->nama;
-
-                if (!in_array($nama_bidang, $labels)) {
-                    $labels[] = $nama_bidang;
-                }
-
-                if (!isset($barColors[$id_bidang])) {
-                    $barColors[$id_bidang] = $this->generateRandomColor();
-                }
-
-                $jumlah_perdin = $perdins_bulan_ini_bidang->count();
-
-                $data['bidang_' . $id_bidang] = $jumlah_perdin;
-            }
-
+            $barColors[] = $this->generateRandomColor();
             $morrisData[] = $data;
         }
-
-        $ykeys = array_keys(array_slice($morrisData[0], 1));
 
         return view('dashboard.index', [
             'title' => 'Home',
             'morrisData' => json_encode($morrisData),
-            'ykeys' => json_encode($ykeys),
-            'labels' => json_encode($labels),
             'barColors' => json_encode(array_values($barColors)),
             'totals' => $totals,
         ]);

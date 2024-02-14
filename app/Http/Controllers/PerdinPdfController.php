@@ -17,7 +17,7 @@ class PerdinPdfController extends Controller
         App::setLocale('id');
         $data_perdin = DataPerdin::where('slug', $slug)->first();
 
-        $imgLogo = base64_encode(file_get_contents(public_path('assets/img/logo-banten2.png')));
+        $imgLogo = base64_encode(file_get_contents(public_path('assets/img/garuda.png')));
 
         $pdf = Pdf::loadView('dashboard.perdin.pdf-perdin.spt', [
             'data_perdin' => $data_perdin,
