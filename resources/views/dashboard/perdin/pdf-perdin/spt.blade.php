@@ -67,7 +67,7 @@
 				<td></td>
 				<td></td>
 				<td>Pangkat/golongan</td>
-				<td>: {{ $data_perdin->pegawai_diperintah->pangkat->nama }}</td>
+				<td>: {{ $data_perdin->pegawai_diperintah->pangkat->nama ?? '-' }}</td>
 			</tr>
 			<tr>
 				<td></td>
@@ -81,7 +81,7 @@
 				<td></td>
 				<td></td>
 				<td>Jabatan</td>
-				<td style="padding-bottom: 30px">: {{ $data_perdin->pegawai_diperintah->jabatan->nama }}</td>
+				<td style="padding-bottom: 30px">: {{ $data_perdin->pegawai_diperintah->jabatan->nama ?? '-' }}</td>
 			</tr>
 			@foreach ($data_perdin->pegawai_mengikuti as $pegawai)
 			<tr>
@@ -96,21 +96,21 @@
 				<td></td>
 				<td></td>
 				<td>Pangkat/golongan</td>
-				<td>: {{ $pegawai->pangkat->nama }}</td>
+				<td>: {{ $pegawai->pangkat->nama ?? '-' }}</td>
 			</tr>
 			<tr>
 				<td></td>
 				<td></td>
 				<td></td>
 				<td>NIP</td>
-				<td>: {{ $pegawai->nip }}</td>
+				<td>: {{ $pegawai->nip ?? '-' }}</td>
 			</tr>
 			<tr>
 				<td></td>
 				<td></td>
 				<td></td>
 				<td>Jabatan</td>
-				<td style="padding-bottom: 30px">: {{ $pegawai->jabatan->nama }}</td>
+				<td style="padding-bottom: 30px">: {{ $pegawai->jabatan->nama ?? '-' }}</td>
 			</tr>
 			@endforeach
 
