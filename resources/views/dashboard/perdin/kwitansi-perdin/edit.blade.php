@@ -174,7 +174,7 @@
 							<button type="reset" class="btn btn-secondary">Batal</button>
 						</div>
 						@if ($kwitansi_perdin->data_perdin->status->kwitansi)
-						<a class="modal-effect btn btn-secondary" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#kwitansi-{{ $kwitansi_perdin->id }}">
+						<a class="modal-effect btn btn-secondary" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#kwitansi-{{ $kwitansi_perdin->id }}" onclick="loadContent('{{ route('kwitansi-pdf', $kwitansi_perdin->id) }}', 'kwitansi-iframe-{{ $kwitansi_perdin->id }}')">
 							<i class="fa fa-file"></i>
 							Cetak Kwitansi
 						</a>
@@ -251,6 +251,11 @@
 			hitungTotalKeseluruhan();
 		});
 	});
+
+	function loadContent(url, iframeId) {
+        var iframe = document.getElementById(iframeId);
+        iframe.src = url;
+    }
 </script>
 
 <!--Internal  Datepicker js -->

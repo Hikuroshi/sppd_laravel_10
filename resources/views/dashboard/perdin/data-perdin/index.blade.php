@@ -45,10 +45,10 @@
 										@endcan
 
 										@if ($data_perdin->status->approve)
-										<a class="modal-effect btn btn-success btn-sm" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#spt-{{ $data_perdin->slug }}">SPT</a>
-										<a class="modal-effect btn btn-success btn-sm" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#visum1-{{ $data_perdin->slug }}">Visum 1</a>
-										<a class="modal-effect btn btn-success btn-sm" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#visum2-{{ $data_perdin->slug }}">Visum 2</a>
-										<a class="modal-effect btn {{ $data_perdin->status->lap ? 'btn-success' : 'btn-danger' }} btn-sm" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#lap-{{ $data_perdin->laporan_perdin_id }}">Lap</a>
+										<a class="modal-effect btn btn-success btn-sm" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#spt-{{ $data_perdin->slug }}" onclick="loadContent('{{ route('spt-pdf', $data_perdin->slug) }}', 'spt-iframe-{{ $data_perdin->slug }}')">SPT</a>
+										<a class="modal-effect btn btn-success btn-sm" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#visum1-{{ $data_perdin->slug }}" onclick="loadContent('{{ route('visum1-pdf', $data_perdin->slug) }}', 'visum1-iframe-{{ $data_perdin->slug }}')">Visum 1</a>
+										<a class="modal-effect btn btn-success btn-sm" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#visum2-{{ $data_perdin->slug }}" onclick="loadContent('{{ route('visum2-pdf', $data_perdin->slug) }}', 'visum2-iframe-{{ $data_perdin->slug }}')">Visum 2</a>
+										<a class="modal-effect btn {{ $data_perdin->status->lap ? 'btn-success' : 'btn-danger' }} btn-sm" data-bs-effect="effect-scale" data-bs-toggle="modal" href="#lap-{{ $data_perdin->laporan_perdin_id }}" onclick="loadContent('{{ route('laporan-perdin.edit', $data_perdin->laporan_perdin_id) }}', 'lap-iframe-{{ $data_perdin->laporan_perdin_id }}')">Lap</a>
 										@else
 										<button class="not-approve btn btn-danger btn-sm">SPT</button>
 										<button class="not-approve btn btn-danger btn-sm">Visum 1</button>
@@ -188,6 +188,11 @@
 			confirmButtonText: 'Ok',
 		});
 	});
+
+    function loadContent(url, iframeId) {
+        var iframe = document.getElementById(iframeId);
+        iframe.src = url;
+    }
 </script>
 
 <!-- JQuery min js -->

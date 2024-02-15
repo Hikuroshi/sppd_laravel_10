@@ -7,7 +7,7 @@
 			</div>
 			<div class="modal-body">
 				@if ($data_perdin->status->approve)
-				<iframe src="{{ route('laporan-perdin.edit', $data_perdin->laporan_perdin_id ?? $laporan_perdin->id) }}" width="100%" height="500px"></iframe>
+				<iframe id="lap-iframe-{{ $data_perdin->laporan_perdin_id }}" width="100%" height="500px"></iframe>
 				@endif
 			</div>
 		</div>

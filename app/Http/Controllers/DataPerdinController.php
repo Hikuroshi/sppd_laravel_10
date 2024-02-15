@@ -221,6 +221,7 @@ class DataPerdinController extends Controller
             }
 
             if ($pegawaiSibuk) {
+                DB::rollback();
                 return redirect()->back()->withInput()->with('failedSave', implode(', ', $pegawaiSibuk) . ' sedang dalam perjalanan dinas!');
             }
 
@@ -243,6 +244,7 @@ class DataPerdinController extends Controller
             }
 
             if (!empty($pegawaiBatasMaksimal)) {
+                DB::rollback();
                 return redirect()->back()->withInput()->with('failedSave', implode(', ', $pegawaiBatasMaksimal) . ' telah mencapai batas maksimal perdin!');
             }
 
@@ -385,6 +387,7 @@ class DataPerdinController extends Controller
             }
 
             if ($pegawaiSibuk) {
+                DB::rollback();
                 return redirect()->back()->withInput()->with('failedSave', implode(', ', $pegawaiSibuk) . ' sedang dalam perjalanan dinas!');
             }
 
@@ -407,6 +410,7 @@ class DataPerdinController extends Controller
             }
 
             if ($pegawaiBatasMaksimal) {
+                DB::rollback();
                 return redirect()->back()->withInput()->with('failedSave', implode(', ', $pegawaiBatasMaksimal) . ' telah mencapai batas maksimal perdin!');
             }
 
