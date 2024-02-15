@@ -75,22 +75,44 @@
 
                     <hr style="border-top: 3px solid black" class="my-4">
 
-                    <div class="form-group">
-                        <label for="tanda_tangan_id" class="form-label">Pejabat yang memberi perintah</label>
-                        <select name="tanda_tangan_id" id="tanda_tangan_id" class="form-control form-select select2 @error('tanda_tangan_id') is-invalid @enderror">
-                            <option value="">Pilih Pejabat</option>
-                            @foreach ($tanda_tangans as $tanda_tangan)
-                            <option value="{{ $tanda_tangan->id }}" @selected(old('tanda_tangan_id', $data_perdin->tanda_tangan_id) == $tanda_tangan->id)>
-                                {{ $tanda_tangan->pegawai->jabatan->nama }}
-                            </option>
-                            @endforeach
-                        </select>
-                        @error('tanda_tangan_id')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                        @enderror
-                    </div>
+                    <div class="row row-sm">
+						<div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="tanda_tangan_id" class="form-label">Pejabat yang memberi perintah</label>
+                                <select name="tanda_tangan_id" id="tanda_tangan_id" class="form-control form-select select2 @error('tanda_tangan_id') is-invalid @enderror">
+                                    <option value="">Pilih Pejabat</option>
+                                    @foreach ($tanda_tangans as $tanda_tangan)
+                                    <option value="{{ $tanda_tangan->id }}" @selected(old('tanda_tangan_id', $data_perdin->tanda_tangan_id) == $tanda_tangan->id)>
+                                        {{ $tanda_tangan->pegawai->jabatan->nama }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                                @error('tanda_tangan_id')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="pptk_id" class="form-label">PPTK <span class="text-danger">*</span></label>
+								<select name="pptk_id" id="pptk_id" class="form-control form-select select2 @error('pptk_id') is-invalid @enderror">
+									<option value="">Pilih PPTK</option>
+									@foreach ($pptks as $pptk)
+									<option value="{{ $pptk->id }}" @selected(old('pptk_id', $data_perdin->pptk_id) == $pptk->id)>
+										{{ $pptk->nama }}
+									</option>
+									@endforeach
+								</select>
+								@error('pptk_id')
+								<div class="invalid-feedback">
+									{{ $message }}
+								</div>
+								@enderror
+							</div>
+						</div>
+					</div>
                     <div class="form-group">
                         <label for="maksud">Maksud Perjalanan Dinas</label>
                         <textarea name="maksud" class="form-control @error('maksud') is-invalid @enderror" id="maksud" placeholder="Masukan maksud" rows="3">{{ old('maksud', $data_perdin->maksud) }}</textarea>

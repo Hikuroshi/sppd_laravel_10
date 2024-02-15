@@ -49,9 +49,8 @@
 					<tr>
 						<td></td>
 						<td colspan="2">
-							<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="pptk" height="60">
-							<p style="text-decoration: underline; font-weight: bold;">&nbsp;</p>
-							<p>NIP.</p>
+							<p style="text-decoration: underline; font-weight: bold; margin-top: 60px">{{ $data_perdin->pptk->nama }}</p>
+							<p>NIP.{{ $data_perdin->pptk->nip }}</p>
 						</td>
 					</tr>
 				</table>

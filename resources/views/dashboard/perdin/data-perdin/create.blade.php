@@ -74,21 +74,43 @@
 
 					<hr style="border-top: 3px solid black" class="my-4">
 
-					<div class="form-group">
-						<label for="tanda_tangan_id" class="form-label">Pejabat yang memberi perintah <span class="text-danger">*</span></label>
-						<select name="tanda_tangan_id" id="tanda_tangan_id" class="form-control form-select select2 @error('tanda_tangan_id') is-invalid @enderror">
-							<option value="">Pilih Pejabat</option>
-							@foreach ($tanda_tangans as $tanda_tangan)
-							<option value="{{ $tanda_tangan->id }}" @selected(old('tanda_tangan_id') == $tanda_tangan->id)>
-								{{ $tanda_tangan->pegawai->jabatan->nama }}
-							</option>
-							@endforeach
-						</select>
-						@error('tanda_tangan_id')
-						<div class="invalid-feedback">
-							{{ $message }}
+					<div class="row row-sm">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="tanda_tangan_id" class="form-label">Pejabat yang memberi perintah <span class="text-danger">*</span></label>
+								<select name="tanda_tangan_id" id="tanda_tangan_id" class="form-control form-select select2 @error('tanda_tangan_id') is-invalid @enderror">
+									<option value="">Pilih Pejabat</option>
+									@foreach ($tanda_tangans as $tanda_tangan)
+									<option value="{{ $tanda_tangan->id }}" @selected(old('tanda_tangan_id') == $tanda_tangan->id)>
+										{{ $tanda_tangan->pegawai->jabatan->nama }}
+									</option>
+									@endforeach
+								</select>
+								@error('tanda_tangan_id')
+								<div class="invalid-feedback">
+									{{ $message }}
+								</div>
+								@enderror
+							</div>
 						</div>
-						@enderror
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="pptk_id" class="form-label">PPTK <span class="text-danger">*</span></label>
+								<select name="pptk_id" id="pptk_id" class="form-control form-select select2 @error('pptk_id') is-invalid @enderror">
+									<option value="">Pilih PPTK</option>
+									@foreach ($pptks as $pptk)
+									<option value="{{ $pptk->id }}" @selected(old('pptk_id') == $pptk->id)>
+										{{ $pptk->nama }}
+									</option>
+									@endforeach
+								</select>
+								@error('pptk_id')
+								<div class="invalid-feedback">
+									{{ $message }}
+								</div>
+								@enderror
+							</div>
+						</div>
 					</div>
 					<div class="form-group">
 						<label for="maksud">Maksud Perjalanan Dinas <span class="text-danger">*</span></label>

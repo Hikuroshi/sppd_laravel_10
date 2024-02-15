@@ -151,7 +151,8 @@ class DataPerdinController extends Controller
             'jenis_perdins' => JenisPerdin::all(),
             'tanda_tangans' => TandaTangan::all(),
             'lamas' => Lama::all(),
-            'pegawais' => $pegawais
+            'pegawais' => $pegawais,
+            'pptks' => Pegawai::where('pptk', '1')->get(),
         ]);
     }
 
@@ -168,6 +169,7 @@ class DataPerdinController extends Controller
                 'tgl_surat' => 'nullable|date',
                 'perihal' => 'nullable',
                 'tanda_tangan_id' => 'required',
+                'pptk_id' => 'required',
                 'maksud' => 'required',
                 'lama' => 'required',
                 'tgl_berangkat' => 'required|date',
@@ -317,6 +319,7 @@ class DataPerdinController extends Controller
             'tanda_tangans' => TandaTangan::all(),
             'lamas' => Lama::all(),
             'pegawais' => $pegawais,
+            'pptks' => Pegawai::where('pptk', '1')->get(),
             'data_perdin' => $dataPerdin,
             'selected_pegawai' => $selectedPegawai
         ]);
@@ -334,6 +337,7 @@ class DataPerdinController extends Controller
                 'tgl_surat' => 'nullable|date',
                 'perihal' => 'nullable',
                 'tanda_tangan_id' => 'required',
+                'pptk_id' => 'required',
                 'maksud' => 'required',
                 'lama' => 'required',
                 'tgl_berangkat' => 'required|date',

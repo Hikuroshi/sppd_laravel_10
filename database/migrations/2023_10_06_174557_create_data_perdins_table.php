@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('perihal')->nullable();
             $table->string('no_spt')->nullable();
             $table->unsignedBigInteger('tanda_tangan_id');
+            $table->unsignedBigInteger('pptk_id');
             $table->text('maksud');
             $table->integer('lama');
             $table->date('tgl_berangkat');
