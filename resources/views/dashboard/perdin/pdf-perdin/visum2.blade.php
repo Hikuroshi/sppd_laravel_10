@@ -50,7 +50,7 @@
 						<td></td>
 						<td colspan="2">
 							<p style="text-decoration: underline; font-weight: bold; margin-top: 60px">{{ $data_perdin->pptk->nama ?? '-' }}</p>
-							<p>NIP.{{ $data_perdin->pptk->nip }} ?? '-</p>
+							<p>NIP.{{ $data_perdin->pptk->nip ?? '-' }}</p>
 						</td>
 					</tr>
 				</table>
