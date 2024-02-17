@@ -9,7 +9,7 @@
 				<div class="d-flex align-items-center">
 					<h3 class="card-title">{{ $title }}</h3>
 					@can('isOperator')
-					<a href="{{ route('data-perdin.create') }}" class="btn btn-primary mg-l-auto">Tambah</a>
+					<a href="{{ route('data-perdin.create') }}" class="btn btn-primary mg-l-auto"><i class="fas fa-plus"></i></a>
 					@endcan
 				</div>
 			</div>

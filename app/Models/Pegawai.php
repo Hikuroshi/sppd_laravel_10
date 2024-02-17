@@ -58,11 +58,6 @@ class Pegawai extends Model
         return $this->hasMany(TandaTangan::class, 'pegawai_id');
     }
 
-    public function data_perdins_pptk(): HasMany
-    {
-        return $this->hasMany(DataPerdin::class, 'pptk_id');
-    }
-
     public function data_perdins_diperintah(): HasMany
     {
         return $this->hasMany(DataPerdin::class, 'pegawai_diperintah_id');

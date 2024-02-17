@@ -15,7 +15,8 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('slug')->unique();
             $table->unsignedBigInteger('pegawai_id');
-            $table->boolean('status');
+            $table->boolean('status')->default('1');
+            $table->enum('jenis_ttd', ['pemberi_perintah', 'pptk']);
             $table->string('file_ttd')->nullable();
             $table->unsignedBigInteger('author_id');
             $table->timestamps();

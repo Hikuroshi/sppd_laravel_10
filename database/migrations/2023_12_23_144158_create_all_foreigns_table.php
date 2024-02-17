@@ -94,7 +94,7 @@ return new class extends Migration
 
         Schema::table('data_perdins', function (Blueprint $table) {
             $table->foreign('tanda_tangan_id')->references('id')->on('tanda_tangans');
-            $table->foreign('pptk_id')->references('id')->on('pegawais');
+            $table->foreign('pptk_id')->references('id')->on('tanda_tangans');
             $table->foreign('alat_angkut_id')->references('id')->on('alat_angkuts');
             $table->foreign('tujuan_id')->references('id')->on('wilayahs');
             $table->foreign('jenis_perdin_id')->references('id')->on('jenis_perdins');

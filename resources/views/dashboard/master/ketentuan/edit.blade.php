@@ -33,6 +33,18 @@
 						</div>
 						@enderror
 					</div>
+					<div class="form-group">
+						<label for="tersedia" class="form-label">Ketersediaan Pegawai</label>
+						<select name="tersedia" id="tersedia" class="form-control form-select @error('tersedia') is-invalid @enderror">
+							<option value="1" @selected(old('tersedia', $ketentuan->tersedia) == 1)>Tersedia</option>
+							<option value="0" @selected(old('tersedia', $ketentuan->tersedia) == 0)>Sedang melakukan perjalanan dinas</option>
+						</select>
+						@error('tersedia')
+						<div class="invalid-feedback">
+							{{ $message }}
+						</div>
+						@enderror
+					</div>
 
 					<div class="form-group mb-0 mt-3 justify-content-end">
 						<button type="submit" class="btn btn-primary">Simpan</button>

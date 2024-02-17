@@ -44,13 +44,14 @@
 					</tr>
 					<tr>
 						<td></td>
-						<td colspan="2">Selaku Pejabat Pelaksana Teknis Kegiatan</td>
+						<td colspan="2">Pejabat Pelaksana Teknis Kegiatan</td>
 					</tr>
 					<tr>
 						<td></td>
 						<td colspan="2">
-							<p style="text-decoration: underline; font-weight: bold; margin-top: 60px">{{ $data_perdin->pptk->nama ?? '-' }}</p>
-							<p>NIP.{{ $data_perdin->pptk->nip ?? '-' }}</p>
+							<img src="data:image/png;base64,{{ $data_perdin->pptk->fileTtdEncoded }}" alt="{{ $data_perdin->pptk->pegawai->nama ?? '' }}" height="60">
+							<p style="text-decoration: underline; font-weight: bold;">{{ $data_perdin->pptk->pegawai->nama ?? '-' }}</p>
+							<p>NIP.{{ $data_perdin->pptk->pegawai->nip ?? '-' }}</p>
 						</td>
 					</tr>
 				</table>
@@ -313,7 +314,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<p>Kepala/Sekretaris</p>
+							<p>Sekretaris</p>
 
 							<img src="data:image/png;base64,{{ $ttd_sekret->fileTtdEncoded ?? $ttd_sekret }}" alt="{{ $ttd_sekret->nama ?? '' }}" height="60">
 							<p style="text-decoration: underline; font-weight: bold;">{{ $ttd_sekret->pegawai->nama ?? '' }}</p>

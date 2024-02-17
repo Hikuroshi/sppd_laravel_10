@@ -145,11 +145,15 @@ class DataPerdinController extends Controller
             $pegawais = $pegawai->merge($kabid)->merge($sekdis);
         }
 
+        $ttd_pemberi_perintah = TandaTangan::where('jenis_ttd', 'pemberi_perintah')->get();
+        $ttd_pptk = TandaTangan::where('jenis_ttd', 'pptk')->get();
+
         return view('dashboard.perdin.data-perdin.create', [
             'title' => 'Tambah Data Perdin',
             'alat_angkuts' => AlatAngkut::all(),
             'jenis_perdins' => JenisPerdin::all(),
-            'tanda_tangans' => TandaTangan::all(),
+            'ttd_pemberi_perintahs' => $ttd_pemberi_perintah,
+            'ttd_pptks' => $ttd_pptk,
             'lamas' => Lama::all(),
             'pegawais' => $pegawais,
             'pptks' => Pegawai::where('pptk', '1')->get(),
@@ -314,14 +318,17 @@ class DataPerdinController extends Controller
 
         $selectedPegawai = $selectedPegawai->merge($pegawaiMengikuti);
 
+        $ttd_pemberi_perintah = TandaTangan::where('jenis_ttd', 'pemberi_perintah')->get();
+        $ttd_pptk = TandaTangan::where('jenis_ttd', 'pptk')->get();
+
         return view('dashboard.perdin.data-perdin.edit', [
             'title' => 'Perbarui Data Perdin',
             'alat_angkuts' => AlatAngkut::all(),
             'jenis_perdins' => JenisPerdin::all(),
-            'tanda_tangans' => TandaTangan::all(),
+            'ttd_pemberi_perintahs' => $ttd_pemberi_perintah,
+            'ttd_pptks' => $ttd_pptk,
             'lamas' => Lama::all(),
             'pegawais' => $pegawais,
-            'pptks' => Pegawai::where('pptk', '1')->get(),
             'data_perdin' => $dataPerdin,
             'selected_pegawai' => $selectedPegawai
         ]);

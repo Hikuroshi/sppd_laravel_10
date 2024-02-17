@@ -97,7 +97,7 @@ class DataPerdin extends Model
 
     public function pptk(): BelongsTo
     {
-        return $this->belongsTo(Pegawai::class, 'pptk_id');
+        return $this->belongsTo(TandaTangan::class, 'pptk_id');
     }
 
     public function alat_angkut(): BelongsTo

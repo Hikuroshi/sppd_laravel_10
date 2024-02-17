@@ -80,9 +80,9 @@
 								<label for="tanda_tangan_id" class="form-label">Pejabat yang memberi perintah <span class="text-danger">*</span></label>
 								<select name="tanda_tangan_id" id="tanda_tangan_id" class="form-control form-select select2 @error('tanda_tangan_id') is-invalid @enderror">
 									<option value="">Pilih Pejabat</option>
-									@foreach ($tanda_tangans as $tanda_tangan)
-									<option value="{{ $tanda_tangan->id }}" @selected(old('tanda_tangan_id') == $tanda_tangan->id)>
-										{{ $tanda_tangan->pegawai->jabatan->nama }}
+									@foreach ($ttd_pemberi_perintahs as $ttd_pemberi_perintah)
+									<option value="{{ $ttd_pemberi_perintah->id }}" @selected(old('ttd_pemberi_perintah_id') == $ttd_pemberi_perintah->id)>
+										{{ $ttd_pemberi_perintah->pegawai->jabatan->nama }}
 									</option>
 									@endforeach
 								</select>
@@ -98,9 +98,9 @@
 								<label for="pptk_id" class="form-label">PPTK <span class="text-danger">*</span></label>
 								<select name="pptk_id" id="pptk_id" class="form-control form-select select2 @error('pptk_id') is-invalid @enderror">
 									<option value="">Pilih PPTK</option>
-									@foreach ($pptks as $pptk)
-									<option value="{{ $pptk->id }}" @selected(old('pptk_id') == $pptk->id)>
-										{{ $pptk->nama }}
+									@foreach ($ttd_pptks as $ttd_pptk)
+									<option value="{{ $ttd_pptk->id }}" @selected(old('ttd_pptk_id') == $ttd_pptk->id)>
+										{{ $ttd_pptk->pegawai->nama }}
 									</option>
 									@endforeach
 								</select>
