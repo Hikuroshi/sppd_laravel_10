@@ -61,7 +61,7 @@
 				<form action="{{ route('data-perdin.destroy', $data_perdin->slug) }}" method="post" class="d-inline">
 					@method('delete')
 					@csrf
-					<button type="button" class="btn btn-danger" id='deleteData' data-title="{{ $data_perdin->nama }}">
+					<button type="button" class="btn btn-danger" id='deleteData' data-title="{{ $data_perdin->maksud }}">
 						<i class="fas fa-trash"></i>
 						Delete
 					</button>
@@ -90,7 +90,7 @@
 
 		Swal.fire({
 			title: 'Hapus ' + title + '?',
-			html: "Apakah kamu yakin ingin menghapus <b>" + title + "</b>? Data yang sudah dihapus tidak bisa dikembalikan!",
+			html: "Apakah kamu yakin ingin menghapus data perdin dengan maksud <b>" + title + "</b>? Data yang sudah dihapus tidak bisa dikembalikan!",
 			icon: 'warning',
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
