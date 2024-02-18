@@ -63,11 +63,11 @@
                 </td>
             </tr>
 			<tr>
-				<td>Kepada</td>
+				<td style="width: 1px">Kepada</td>
 				<td style="width: 1%">:</td>
 				<td style="width: 1%">1. </td>
 				<td>Nama</td>
-				<td>: <b>{{ $data_perdin->pegawai_diperintah->nama }}</b></td>
+				<td style="white-space: nowrap">: <b>{{ $data_perdin->pegawai_diperintah->nama }}</b></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -96,7 +96,7 @@
 				<td></td>
 				<td>{{ $loop->iteration + 1 }}. </td>
 				<td>Nama</td>
-				<td>: <b>{{ $pegawai->nama }}</b></td>
+				<td style="white-space: nowrap">: <b>{{ $pegawai->nama }}</b></td>
 			</tr>
 			<tr>
 				<td></td>
