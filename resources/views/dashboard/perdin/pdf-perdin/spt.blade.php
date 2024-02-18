@@ -7,21 +7,12 @@
 		}
 
 		td {
-			padding: 5px;
+			padding: 1px 5px;
 			vertical-align: top;
 		}
 
 		p, td {
 			font-size: 17px;
-		}
-
-		footer {
-			position: fixed;
-			bottom: 60px;
-			left: 0px;
-			right: 0px;
-			height: 50px;
-			text-align: center
 		}
 	</style>
 </head>
@@ -133,10 +124,8 @@
 			<tr>
 				<td>Untuk</td>
 				<td>:</td>
-				<td>1. </td>
-				<td colspan="2">: {{ $data_perdin->maksud }}</td>
+				<td colspan="3">{{ $data_perdin->maksud }}</td>
 			</tr>
-
 		</table>
 
 		<table style="width: 100%;">
@@ -144,23 +133,19 @@
 				<td style="width: 50%"></td>
 				<td>
 					<div style="text-align: center;">
-						<p style="margin-top: 20px;">
-							Serang,  {{ Carbon\Carbon::parse($data_perdin->tgl_berangkat)->isoFormat('D MMMM YYYY') }} <br>
-							Kepala Dinas
-						</p>
-						<img src="data:image/png;base64,{{ $data_perdin->tanda_tangan->fileTtdEncoded }}" alt="{{ $data_perdin->tanda_tangan->nama }}" height="70">
-						<p style="text-decoration: underline; font-weight: bold;">{{ $data_perdin->tanda_tangan->pegawai->nama }}</p>
-						<p>NIP.{{ $data_perdin->tanda_tangan->pegawai->nip }}</p>
+						<div style="display: inline-block; text-align: left;">
+							<p style="margin-top: 20px;">
+								Serang,  {{ Carbon\Carbon::parse($data_perdin->tgl_berangkat)->isoFormat('D MMMM YYYY') }} <br>
+								Kepala Dinas
+							</p>
+							<img src="data:image/png;base64,{{ $data_perdin->tanda_tangan->fileTtdEncoded }}" alt="{{ $data_perdin->tanda_tangan->nama }}" height="70">
+							<p style="text-decoration: underline; font-weight: bold;">{{ $data_perdin->tanda_tangan->pegawai->nama }}</p>
+							<p>NIP.{{ $data_perdin->tanda_tangan->pegawai->nip }}</p>
+						</div>
 					</div>
 				</td>
 			</tr>
 		</table>
-		<footer>
-			<small>
-				Kawasan Pusat Pemerintahan Provinsi Banten (KP3B) <br>
-				Jalan Syekh Nawawi Al Bantani, Palima Serang-Banten Telepon.(0254) 267053, Fax.(0254) 267052 Serang
-			</small>
-		</footer>
 	</div>
 </body>
 </html>

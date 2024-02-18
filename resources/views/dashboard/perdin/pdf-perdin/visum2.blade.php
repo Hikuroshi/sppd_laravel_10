@@ -49,7 +49,7 @@
 					<tr>
 						<td></td>
 						<td colspan="2">
-							<img src="data:image/png;base64,{{ $data_perdin->pptk->fileTtdEncoded ?? 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=' }}" alt="{{ $data_perdin->pptk->pegawai->nama ?? '' }}" height="60">
+							<img src="data:image/png;base64,{{ $data_perdin->pptk->fileTtdEncoded }}" alt="{{ $data_perdin->pptk->pegawai->nama ?? '' }}" height="60">
 							<p style="text-decoration: underline; font-weight: bold;">{{ $data_perdin->pptk->pegawai->nama ?? '-' }}</p>
 							<p>NIP.{{ $data_perdin->pptk->pegawai->nip ?? '-' }}</p>
 						</td>

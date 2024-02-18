@@ -39,7 +39,7 @@
 									<form action="{{ route('tanda-tangan.destroy', $tanda_tangan->slug) }}" method="post" class="d-inline">
 										@method('delete')
 										@csrf
-										<button type="button" class="btn btn-danger btn-sm" id='deleteData' data-title="{{ $tanda_tangan->nama }}">
+										<button type="button" class="btn btn-danger btn-sm" id='deleteData' data-title="{{ $tanda_tangan->pegawai->nama }}">
 											<i class="fas fa-trash"></i>
 										</button>
 									</form>
