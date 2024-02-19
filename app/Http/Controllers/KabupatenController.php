@@ -16,7 +16,7 @@ class KabupatenController extends Controller
     public function index()
     {
         return view('dashboard.master.kabupaten.index', [
-            'title' => 'Daftar Kabupaten',
+            'title' => 'Daftar Kota/Kabupaten',
             'kabupatens' => Kabupaten::all(),
         ]);
     }
@@ -27,7 +27,7 @@ class KabupatenController extends Controller
     public function create()
     {
         return view('dashboard.master.kabupaten.create', [
-            'title' => 'Tambah Kabupaten',
+            'title' => 'Tambah Kota/Kabupaten',
             'wilayahs' => Wilayah::all(),
         ]);
     }
@@ -66,7 +66,7 @@ class KabupatenController extends Controller
     public function edit(Kabupaten $kabupaten)
     {
         return view('dashboard.master.kabupaten.edit', [
-            'title' => 'Perbarui Kabupaten',
+            'title' => 'Perbarui Kota/Kabupaten',
             'kabupaten' => $kabupaten,
             'wilayahs' => Wilayah::all(),
         ]);
