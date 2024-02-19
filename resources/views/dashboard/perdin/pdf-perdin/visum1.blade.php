@@ -123,7 +123,7 @@
 					<td style="width: 1%; border-right: 0; border-top: 0;">b. </td>
 					<td style="border-left: 0; border-top: 0;">Tempat Tujuan</td>
 					<td style="width: 1%; border-right: 0; border-top: 0;">b. </td>
-					<td colspan="2" style="border-left: 0; border-top: 0;">{{ $data_perdin->kabupaten->nama }}</td>
+					<td colspan="2" style="border-left: 0; border-top: 0;">{{ $data_perdin->kabupaten->nama ?? '' }}</td>
 				</tr>
 
 				<tr>

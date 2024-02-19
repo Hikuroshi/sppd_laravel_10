@@ -33,7 +33,7 @@
 					</tr>
 					<tr>
 						<td style="white-space: nowrap; width: 1%; padding-right: 10px;">Ke</td>
-						<td style="white-space: nowrap;">: {{ $data_perdin->kabupaten->nama }}</td>
+						<td style="white-space: nowrap;">: {{ $data_perdin->kabupaten->nama ?? '' }}</td>
 					</tr>
 					<tr>
 						<td style="white-space: nowrap; width: 1%; padding-right: 10px;">Pada Tanggal</td>
