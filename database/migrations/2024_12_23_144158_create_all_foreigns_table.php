@@ -76,6 +76,11 @@ return new class extends Migration
             $table->foreign('author_id')->references('id')->on('users');
         });
 
+        Schema::table('kabupatens', function (Blueprint $table) {
+            $table->foreign('wilayah_id')->references('id')->on('wilayahs');
+            $table->foreign('author_id')->references('id')->on('users');
+        });
+
         Schema::table('uang_harians', function (Blueprint $table) {
             $table->foreign('wilayah_id')->references('id')->on('wilayahs');
             $table->foreign('author_id')->references('id')->on('users');
@@ -97,6 +102,7 @@ return new class extends Migration
             $table->foreign('pptk_id')->references('id')->on('tanda_tangans');
             $table->foreign('alat_angkut_id')->references('id')->on('alat_angkuts');
             $table->foreign('tujuan_id')->references('id')->on('wilayahs');
+            $table->foreign('kabupaten_id')->references('id')->on('kabupatens');
             $table->foreign('jenis_perdin_id')->references('id')->on('jenis_perdins');
             $table->foreign('pegawai_diperintah_id')->references('id')->on('pegawais');
             $table->foreign('status_id')->references('id')->on('status_perdins');

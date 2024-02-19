@@ -26,9 +26,10 @@ return new class extends Migration
             $table->date('tgl_berangkat');
             $table->date('tgl_kembali');
             $table->unsignedBigInteger('alat_angkut_id');
-            $table->unsignedBigInteger('jenis_perdin_id');
             $table->string('kedudukan')->default('Kota Serang');
+            $table->unsignedBigInteger('jenis_perdin_id');
             $table->unsignedBigInteger('tujuan_id');
+            $table->unsignedBigInteger('kabupaten_id');
             $table->text('lokasi');
             $table->unsignedBigInteger('pegawai_diperintah_id');
             $table->string('jumlah_pegawai');

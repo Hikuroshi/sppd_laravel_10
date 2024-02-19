@@ -200,7 +200,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="jenis_perdin_id" class="form-label">Jenis Perdin</label>
                                 <select name="jenis_perdin_id" id="jenis_perdin_id" class="form-control form-select @error('jenis_perdin_id') is-invalid @enderror">
@@ -236,6 +236,24 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="col-sm-6">
+							<div class="form-group">
+								<label for="kabupaten_id" class="form-label">Kabupaten <span class="text-danger">*</span></label>
+								<select name="kabupaten_id" id="kabupaten_id" class="form-control form-select select2 @error('kabupaten_id') is-invalid @enderror">
+									<option value="">Pilih Kabupaten</option>
+                                    @foreach ($data_perdin->tujuan->kabupatens as $kabupaten)
+                                    <option value="{{ $kabupaten->id }}" @selected(old('kabupaten_id', $data_perdin->kabupaten_id) == $kabupaten->id)>
+                                        {{ $kabupaten->nama }}
+                                    </option>
+                                    @endforeach
+								</select>
+								@error('kabupaten_id')
+								<div class="invalid-feedback">
+									{{ $message }}
+								</div>
+								@enderror
+							</div>
+						</div>
                     </div>
 
                     <div class="form-group">

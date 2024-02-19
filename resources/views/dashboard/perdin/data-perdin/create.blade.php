@@ -199,7 +199,7 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-sm-6">
+						<div class="col-sm-12">
 							<div class="form-group">
 								<label for="jenis_perdin_id" class="form-label">Jenis Perdin <span class="text-danger">*</span></label>
 								<select name="jenis_perdin_id" id="jenis_perdin_id" class="form-control form-select @error('jenis_perdin_id') is-invalid @enderror">
@@ -224,6 +224,19 @@
 									<option value="">Pilih Tujuan</option>
 								</select>
 								@error('tujuan_id')
+								<div class="invalid-feedback">
+									{{ $message }}
+								</div>
+								@enderror
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="kabupaten_id" class="form-label">Kabupaten <span class="text-danger">*</span></label>
+								<select name="kabupaten_id" id="kabupaten_id" class="form-control form-select select2 @error('kabupaten_id') is-invalid @enderror">
+									<option value="">Pilih Kabupaten</option>
+								</select>
+								@error('kabupaten_id')
 								<div class="invalid-feedback">
 									{{ $message }}
 								</div>
@@ -322,6 +335,10 @@
 
 <!-- JQuery min js -->
 <script src="/assets/plugins/jquery/jquery.min.js"></script>
+
+<script>
+    var selected_pegawai = [];
+</script>
 
 <!-- Data Perdin -->
 <script src="/assets/js/data-perdin.js"></script>

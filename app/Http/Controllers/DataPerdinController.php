@@ -15,6 +15,7 @@ use App\Models\TandaTangan;
 use App\Models\UangHarian;
 use App\Models\UangPenginapan;
 use App\Models\UangTransport;
+use App\Models\Wilayah;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
@@ -34,6 +35,19 @@ class DataPerdinController extends Controller
         });
 
         return response()->json($tujuan);
+    }
+
+    public function getKabupaten($tujuanId)
+    {
+        $tujuan = Wilayah::find($tujuanId);
+        $kabupaten = $tujuan->kabupatens->map(function ($kabupaten) {
+            return [
+                'id' => $kabupaten->id,
+                'nama' => $kabupaten->nama,
+            ];
+        });
+
+        return response()->json($kabupaten);
     }
 
     public function getPegawaiInfo($tujuanId, $pegawaiId)
@@ -181,6 +195,7 @@ class DataPerdinController extends Controller
                 'alat_angkut_id' => 'required',
                 'jenis_perdin_id' => 'required',
                 'tujuan_id' => 'required',
+                'kabupaten_id' => 'required',
                 'lokasi' => 'required',
                 'pegawai_diperintah_id' => 'required',
                 'pegawai_mengikuti_id' => 'nullable',
@@ -330,7 +345,7 @@ class DataPerdinController extends Controller
             'lamas' => Lama::all(),
             'pegawais' => $pegawais,
             'data_perdin' => $dataPerdin,
-            'selected_pegawai' => $selectedPegawai
+            'selected_pegawai' => $selectedPegawai,
         ]);
     }
 
@@ -354,6 +369,7 @@ class DataPerdinController extends Controller
                 'alat_angkut_id' => 'required',
                 'jenis_perdin_id' => 'required',
                 'tujuan_id' => 'required',
+                'kabupaten_id' => 'required',
                 'lokasi' => 'required',
                 'pegawai_diperintah_id' => 'required',
                 'pegawai_mengikuti_id' => 'nullable',
@@ -375,7 +391,7 @@ class DataPerdinController extends Controller
             foreach ($selectedPegawaiIds as $pegawaiId) {
                 $pegawai = Pegawai::find($pegawaiId);
 
-                if ($pegawai->ketentuan->tersedia == '0') {
+                if ($pegawai->ketentuan->tersedia == '0' && $pegawai->id != $dataPerdin->pegawai_diperintah_id && !$dataPerdin->pegawai_mengikuti->pluck('id')->contains($pegawai->id)) {
                     $pegawaiSibuk[] = $pegawai->nama;
                 }
 

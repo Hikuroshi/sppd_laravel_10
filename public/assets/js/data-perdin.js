@@ -17,12 +17,14 @@ function hitungTanggalKembali() {
 $('#lama').on('change', hitungTanggalKembali);
 $('#tgl_berangkat').on('change', hitungTanggalKembali);
 
-// Tujuan yang menyesuaikan wilayah
+// Tujuan yang menyesuaikan jenis perdin
 $('#jenis_perdin_id').on('change', function() {
     let jenisPerdinId = $('#jenis_perdin_id').val();
 
     $('#tujuan_id').empty();
     $('#tujuan_id').append('<option value="">Pilih Tujuan</option>');
+    $('#kabupaten_id').empty();
+    $('#kabupaten_id').append('<option value="">Pilih Tujuan</option>');
 
     $.ajax({
         url: '/get-tujuan/' + jenisPerdinId,
@@ -31,6 +33,25 @@ $('#jenis_perdin_id').on('change', function() {
         success: function(data) {
             $.each(data, function(key, value) {
                 $('#tujuan_id').append('<option value="' + value.id + '">' + value.nama + '</option>');
+            });
+        }
+    });
+});
+
+// Kabupaten yang menyesuaikan wilayah
+$('#tujuan_id').on('change', function() {
+    let tujuanId = $('#tujuan_id').val();
+
+    $('#kabupaten_id').empty();
+    $('#kabupaten_id').append('<option value="">Pilih Tujuan</option>');
+
+    $.ajax({
+        url: '/get-kabupaten/' + tujuanId,
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            $.each(data, function(key, value) {
+                $('#kabupaten_id').append('<option value="' + value.id + '">' + value.nama + '</option>');
             });
         }
     });
