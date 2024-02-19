@@ -136,7 +136,7 @@
 						<div style="display: inline-block; text-align: left;">
 							<p style="margin-top: 20px;">
 								Serang,  {{ Carbon\Carbon::parse($data_perdin->tgl_berangkat)->isoFormat('D MMMM YYYY') }} <br>
-								{{ explode(' ', $data_perdin->tanda_tangan->pegawai->jabatan->nama, 3) }}
+								{{ implode(' ', array_slice(explode(' ', $data_perdin->tanda_tangan->pegawai->jabatan->nama), 0, 2)) }}
 							</p>
 							<img src="data:image/png;base64,{{ $data_perdin->tanda_tangan->fileTtdEncoded }}" alt="{{ $data_perdin->tanda_tangan->nama }}" height="70">
 							<p style="text-decoration: underline; font-weight: bold;">{{ $data_perdin->tanda_tangan->pegawai->nama }}</p>
