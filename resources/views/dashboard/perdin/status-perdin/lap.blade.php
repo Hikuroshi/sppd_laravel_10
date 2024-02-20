@@ -6,8 +6,8 @@
 				<button aria-label="Close" class="close" data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
 			</div>
 			<div class="modal-body">
-				@if ($data_perdin->status->approve)
-				<iframe id="lap-iframe-{{ $data_perdin->laporan_perdin_id }}" width="100%" height="500px"></iframe>
+				@if ($laporan_perdin->data_perdin->status->approve)
+				<iframe id="lap-iframe-{{ $laporan_perdin->id }}" width="100%" height="500px"></iframe>
 				@endif
 			</div>
 		</div>

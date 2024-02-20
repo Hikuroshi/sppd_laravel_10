@@ -270,7 +270,7 @@ class DataPerdinController extends Controller
             Ketentuan::whereIn('id', $allKetentuanIds)->increment('jumlah_perdin');
 
             Artisan::call('availability:update');
-            return redirect()->route('data-perdin.index', 'baru')->with('success', 'Data Perdin berhasil ditambahkan!');
+            return redirect()->route('data-perdin.show', $perdin->slug)->with('success', 'Data Perdin berhasil ditambahkan!');
         }, 2);
     }
 
@@ -440,7 +440,7 @@ class DataPerdinController extends Controller
             Ketentuan::whereIn('id', $allKetentuanIds)->increment('jumlah_perdin');
 
             Artisan::call('availability:update');
-            return redirect()->route('data-perdin.index', 'baru')->with('success', 'Data Perdin berhasil ditambahkan!');
+            return redirect()->route('data-perdin.show', $dataPerdin->slug)->with('success', 'Data Perdin berhasil ditambahkan!');
         }, 2);
     }
 

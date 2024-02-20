@@ -7,7 +7,7 @@
 		<div class="card box-shadow-0 ">
 			<div class="card-header d-flex justify-content-between">
 				<h4 class="card-title mb-1">{{ $title }}</h4>
-				<a class="btn btn-secondary btn-sm" href="{{ route('data-perdin.index', $kwitansi_perdin->data_perdin->status->kwitansi ? 'sudah_bayar' : 'belum_bayar') }}">
+				<a class="btn btn-secondary btn-sm" href="{{ route('data-perdin.show', $kwitansi_perdin->data_perdin->slug) }}">
 					<i class="fa fa-reply"></i>
 				</a>
 			</div>
@@ -195,6 +195,32 @@
 
 <!-- JQuery min js -->
 <script src="/assets/plugins/jquery/jquery.min.js"></script>
+
+<!-- Sweet-alert js  -->
+<script src="/assets/plugins/sweet-alert/sweetalert2.all.min.js"></script>
+
+@if(session()->has('success'))
+<script>
+	$(document).ready(function() {
+		var Toast = Swal.mixin({
+			toast: true,
+			position: 'top',
+			showConfirmButton: false,
+			timer: 5000,
+			timerProgressBar: true,
+			didOpen: (toast) => {
+				toast.addEventListener('mouseenter', Swal.stopTimer)
+				toast.addEventListener('mouseleave', Swal.resumeTimer)
+			}
+		});
+
+		Toast.fire({
+			icon: 'success',
+			title: '{{ session('success') }}'
+		});
+	});
+</script>
+@endif
 
 <script>
 	function formatToRupiah(angka) {
