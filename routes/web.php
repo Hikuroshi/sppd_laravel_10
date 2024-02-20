@@ -20,6 +20,7 @@ use App\Http\Controllers\PangkatController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PerdinPdfController;
 use App\Http\Controllers\RekapController;
+use App\Http\Controllers\TtdVisumController;
 use App\Http\Controllers\WilayahController;
 use App\Http\Controllers\SeksiController;
 use App\Http\Controllers\StatusPerdinController;
@@ -105,7 +106,11 @@ Route::middleware('can:isApprovalOperator')->group(function(){
 		Route::get('/dashboard/status-perdin/lap/pdf/{id}', 'lap')->name('lap-pdf')->middleware('auth');
 		Route::get('/dashboard/status-perdin/lap-bendahara/pdf/{id}', 'lap_bendahara')->name('lap-bendahara-pdf')->middleware('auth');
 		Route::get('/dashboard/status-perdin/kwitansi/pdf/{id}', 'kwitansi')->name('kwitansi-pdf')->middleware('auth');
+		Route::get('/dashboard/ttd-visum/pdf/{nama}/{nip}', 'ttd_visum')->name('ttd-visum-pdf')->middleware('auth');
 	});
+
+	Route::get('/dashboard/ttd-visum', [TtdVisumController::class, 'create'])->name('ttd-visum.create')->middleware('auth');
+	Route::post('/dashboard/ttd-visum', [TtdVisumController::class, 'store'])->name('ttd-visum.store')->middleware('auth');
 
 	Route::resource('/dashboard/laporan-perdin', LaporanPerdinController::class)->only('index')->middleware('auth');
 	Route::resource('/dashboard/kwitansi-perdin', KwitansiPerdinController::class)->only('index')->middleware('auth');
