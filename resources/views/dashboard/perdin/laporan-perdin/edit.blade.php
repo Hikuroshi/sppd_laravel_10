@@ -101,7 +101,7 @@
 							<div class="table-responsive mg-t-20">
 								<table class="table mg-b-0 text-md-nowrap">
 									<tr>
-										<td class="fw-bold">B. Madsud dan Tujuan</td>
+										<td class="fw-bold">C. Madsud dan Tujuan</td>
 									</tr>
 									<tr>
 										<td>
